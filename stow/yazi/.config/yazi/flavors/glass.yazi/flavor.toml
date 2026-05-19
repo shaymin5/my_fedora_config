@@ -1,0 +1,107 @@
+# =========================================================
+# Glassmorphism Theme (Fixed / Yazi new schema compatible)
+# =========================================================
+
+[manager]
+cwd = { fg = "#89b4fa", bold = true }
+
+hovered         = { bg = "#313244", bold = true }
+preview_hovered = { bg = "#45475a" }
+
+find_keyword  = { fg = "#f9e2af", bold = true }
+find_position = { fg = "#cba6f7", bold = true }
+
+border_symbol = " "
+border_style  = { fg = "#45475a" }
+
+tab_active   = { fg = "#11111b", bg = "#89b4fa", bold = true }
+tab_inactive = { fg = "#7f849c", bg = "#181825" }
+
+[status]
+progress_label  = { fg = "#cdd6f4", bold = true }
+progress_normal = { fg = "#89b4fa", bg = "#313244" }
+progress_error  = { fg = "#f38ba8", bg = "#313244" }
+
+permissions_t = { fg = "#89b4fa" }
+permissions_r = { fg = "#a6e3a1" }
+permissions_w = { fg = "#f9e2af" }
+permissions_x = { fg = "#f38ba8" }
+
+[input]
+border   = { fg = "#7aa2f7" }
+selected = { bg = "#45475a" }
+
+[select]
+border   = { fg = "#89b4fa" }
+active   = { fg = "#cba6f7", bold = true }
+
+[help]
+on   = { fg = "#94e2d5" }
+exec = { fg = "#a6e3a1" }
+desc = { fg = "#cdd6f4" }
+
+hovered = { bg = "#313244", bold = true }
+footer  = { fg = "#11111b", bg = "#89b4fa" }
+
+[filetype]
+
+rules = [
+
+    # =========================
+    # directories
+    # =========================
+    { mime = "inode/directory", fg = "#89b4fa", bold = true },
+
+    # =========================
+    # symlink
+    # =========================
+    { url = "*", fg = "#94e2d5" },
+
+    # =========================
+    # executables (UNIX style)
+    # =========================
+    { mime = "application/x-executable", fg = "#a6e3a1", bold = true },
+
+    # fallback executable detection (safe)
+    { mime = "application/x-pie-executable", fg = "#a6e3a1", bold = true },
+
+    # =========================
+    # images
+    # =========================
+    { mime = "image/*", fg = "#f9e2af" },
+
+    # =========================
+    # video
+    # =========================
+    { mime = "video/*", fg = "#cba6f7" },
+
+    # =========================
+    # audio
+    # =========================
+    { mime = "audio/*", fg = "#fab387" },
+
+    # =========================
+    # archives
+    # =========================
+    { mime = "application/zip", fg = "#f38ba8" },
+    { mime = "application/x-tar", fg = "#f38ba8" },
+    { mime = "application/x-7z-compressed", fg = "#f38ba8" },
+    { mime = "application/gzip", fg = "#f38ba8" },
+
+    # =========================
+    # documents
+    # =========================
+    { mime = "application/pdf", fg = "#f2cdcd" },
+
+    # =========================
+    # text files fallback
+    # =========================
+    { mime = "text/*", fg = "#cdd6f4" },
+
+    # =========================
+    # hidden files (IMPORTANT FIX)
+    # =========================
+    # 注意：不能用 name=".*" 了
+    { mime = "inode/hidden", fg = "#6c7086" }
+
+]

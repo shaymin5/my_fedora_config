@@ -1,0 +1,64 @@
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+dimensions = { columns = 140, lines = 40 }
+padding = { x = 12, y = 12 }
+opacity = 0.95          # 透明度，根据喜好调 0.85~1.0
+dynamic_title = true
+decorations = "Full"    # 或 "None" 完全无边框
+
+# 字体（推荐安装 Nerd Font）
+[font]
+normal = { family = "Maple Mono NF", style = "Regular" }
+bold = { family = "Maple Mono NF", style = "Bold" }
+italic = { family = "Maple Mono NF", style = "Italic" }
+bold_italic = { family = "Maple Mono NF", style = "Bold Italic" }
+size = 16.0
+
+# 光标
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+unfocused_hollow = false
+
+# 颜色方案（推荐 Catppuccin Mocha / Macchiato / Frappe）
+# 你可以单独放一个 colors.toml 然后 import
+[colors.primary]
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+
+[colors.cursor]
+text = "#1E1E2E"
+cursor = "#F5E0DC"
+
+[colors.normal]
+black   = "#45475A"
+red     = "#F38BA8"
+green   = "#A6E3A1"
+yellow  = "#F9E2AF"
+blue    = "#89B4FA"
+magenta = "#CBA6F7"
+cyan    = "#94E2D5"
+white   = "#BAC2DE"
+
+[colors.bright]
+black   = "#585B70"
+red     = "#F38BA8"
+green   = "#A6E3A1"
+yellow  = "#F9E2AF"
+blue    = "#89B4FA"
+magenta = "#CBA6F7"
+cyan    = "#94E2D5"
+white   = "#A6ADC8"
+
+[general]
+# 基础设置
+live_config_reload = true
+
+[terminal]
+
+# 指定用bash
+[terminal.shell]
+program = "/usr/bin/bash"
+args = ["-l", "-i"]   # -l = login shell, -i = interactive

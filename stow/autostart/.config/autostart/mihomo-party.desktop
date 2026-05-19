@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Clash Party
+Exec=/opt/clash-party/mihomo-party %U
+Terminal=false
+Type=Application
+Icon=mihomo-party
+StartupWMClass=mihomo-party
+GenericName=Proxy Client
+Comment=Clash Party
+MimeType=x-scheme-handler/clash;x-scheme-handler/mihomo;
+Keywords=proxy;clash;mihomo;vpn;
+Categories=Utility;

@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# 从.config拉取配置纳入stow管理
+
+set -euo pipefail
+
+DOTFILES="$HOME/dotfiles/stow"
+
+if [ "$#" -eq 0 ]; then
+    echo "Usage: buildstow <app1> [app2] ..."
+    exit 1
+fi
+
+for app in "$@"; do
+    SRC="$HOME/.config/$app"
+    PKG="$DOTFILES/$app"
+    DEST="$PKG/.config/$app"
+
+    echo
+    echo "==> Processing: $app"
+
+    # 检查 config 是否存在
+    if [ ! -e "$SRC" ]; then
+        echo "Config not found: $SRC"
+        continue
+    fi
+
+    # 已经是 symlink
+    if [ -L "$SRC" ]; then
+        echo "Already managed: $SRC"
+        continue
+    fi
+
+    # 创建 package 目录
+    mkdir -p "$PKG/.config"
+
+    # 防止覆盖
+    if [ -e "$DEST" ]; then
+        echo "Destination already exists: $DEST"
+        continue
+    fi
+
+    # 移动配置
+    echo "Moving config..."
+    mv "$SRC" "$DEST"
+
+    # 创建 symlink
+    echo "Stowing..."
+    stow \
+        --dir="$DOTFILES" \
+        --target="$HOME" \
+        "$app"
+
+    echo "Done: $app"
+done
