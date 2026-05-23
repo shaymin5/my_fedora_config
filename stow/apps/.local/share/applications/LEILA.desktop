@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=LEILA
+Comment=Play this game on Steam
+Keywords=steam;game;
+Exec=steam steam://rungameid/2458430
+Icon=steam_icon_2458430
+Terminal=false
+Type=Application
+Categories=Game;
