@@ -1,0 +1,106 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max"
+    },
+    "oracle": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max"
+    },
+    "librarian": {
+      "model": "opencode-go/deepseek-v4-flash","variants":"max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash","variants":"max"
+        }
+      ]
+    },
+    "explore": {
+      "model": "opencode-go/deepseek-v4-flash","variants":"max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash","variants":"max"
+        }
+      ]
+    },
+    "multimodal-looker": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max"
+    },
+    "prometheus": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max"
+    },
+    "metis": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max"
+    },
+    "momus": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max"
+    },
+    "atlas": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash","variants":"max"
+        }
+      ]
+    },
+    "sisyphus-junior": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash","variants":"max"
+        }
+      ]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max"
+    },
+    "ultrabrain": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max"
+    },
+    "deep": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-pro","variants":"max"
+        }
+      ]
+    },
+    "artistry": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-pro","variants":"max"
+        }
+      ]
+    },
+    "quick": {
+      "model": "opencode-go/deepseek-v4-flash","variants":"max"
+    },
+    "unspecified-low": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash","variants":"max"
+        }
+      ]
+    },
+    "unspecified-high": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash","variants":"max"
+        }
+      ]
+    },
+    "writing": {
+      "model": "opencode-go/deepseek-v4-pro","variants":"max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash","variants":"max"
+        }
+      ]
+    }
+  }
+}
