@@ -24,14 +24,14 @@
         "showCategories": true,
         "showIconBackground": false,
         "sortByMostUsed": true,
-        "terminalCommand": "alacritty -e",
+        "terminalCommand": "kitty -e",
         "viewMode": "list"
     },
     "audio": {
         "mprisBlacklist": [
         ],
         "preferredPlayer": "",
-        "spectrumFrameRate": 30,
+        "spectrumFrameRate": 60,
         "spectrumMirrored": true,
         "visualizerType": "linear",
         "volumeFeedback": false,
@@ -401,7 +401,7 @@
         "lockScreenMonitors": [
         ],
         "lockScreenTint": 0,
-        "passwordChars": false,
+        "passwordChars": true,
         "radiusRatio": 1,
         "reverseScroll": false,
         "scaleRatio": 1,
@@ -491,7 +491,7 @@
         "enableMarkdown": false,
         "enableMediaToast": false,
         "enabled": true,
-        "location": "top_right",
+        "location": "top",
         "lowUrgencyDuration": 3,
         "monitors": [
         ],
@@ -532,7 +532,7 @@
         "notifyUpdates": true
     },
     "sessionMenu": {
-        "countdownDuration": 10000,
+        "countdownDuration": 6000,
         "enableCountdown": true,
         "largeButtonsLayout": "single-row",
         "largeButtonsStyle": true,
@@ -609,7 +609,7 @@
         "diskAvailWarningThreshold": 20,
         "diskCriticalThreshold": 90,
         "diskWarningThreshold": 80,
-        "enableDgpuMonitoring": false,
+        "enableDgpuMonitoring": true,
         "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor",
         "gpuCriticalThreshold": 90,
         "gpuWarningThreshold": 80,
@@ -642,7 +642,7 @@
         "translucentWidgets": false
     },
     "wallpaper": {
-        "automationEnabled": false,
+        "automationEnabled": true,
         "directory": "/home/shaymin/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
@@ -658,7 +658,7 @@
         "overviewEnabled": false,
         "overviewTint": 0.6,
         "panelPosition": "follow_bar",
-        "randomIntervalSec": 300,
+        "randomIntervalSec": 420,
         "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": false,
         "skipStartupTransition": false,
