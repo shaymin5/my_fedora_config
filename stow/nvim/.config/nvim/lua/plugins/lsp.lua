@@ -5,7 +5,12 @@ return {
       pyright = {
         before_init = function(_, config)
           local root = config.root_dir
-          local venv = root .. "/.venv" or root .. "/venv" or root .. "/.uv"
+          if not root then return end
+
+          local venv = root .. "/.venv"
+          if vim.fn.isdirectory(venv) ~= 1 then
+            venv = root .. "/venv"
+          end
 
           if vim.fn.isdirectory(venv) == 1 then
             config.settings = config.settings or {}

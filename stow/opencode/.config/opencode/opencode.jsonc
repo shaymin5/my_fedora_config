@@ -1,4 +1,13 @@
 {
   "plugin": ["oh-my-openagent@latest"],
-  "$schema": "https://opencode.ai/config.json"
+  "$schema": "https://opencode.ai/config.json",
+"permission": {
+    "bash": {
+            "python *":"deny",
+            "python3 *": "deny",
+            "pip *":"deny",
+            "pip3 *": "deny"
+        },
+    "edit": "deny"
+  }
 }

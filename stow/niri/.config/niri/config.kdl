@@ -287,7 +287,7 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "qs" "-c" "noctalia-shell"
-spawn-at-startup "google-chrome-stable" "--start-fullscreen" "https://www.bilibili.com/"
+spawn-at-startup "google-chrome-stable" "https://www.bilibili.com/"
 spawn-at-startup "udiskie" "--tray"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
