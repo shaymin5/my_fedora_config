@@ -137,7 +137,8 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    center-focused-column "never"
+    // center-focused-column "never"
+    center-focused-column "always"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -151,6 +152,7 @@ layout {
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
     }
+
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Ctrl+Shift+R) toggles between.
     // preset-window-heights { }
@@ -177,7 +179,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 4
+        width 3
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -280,6 +282,12 @@ layout {
     }
 }
 
+//关闭鼠标移动到左上角打开overview
+gestures {
+    hot-corners {
+        off
+    }
+}
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
