@@ -1,0 +1,41 @@
+{
+  "skill_name": "architecture-tracker",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我决定用 FastAPI 作为 Web 框架，因为需要异步和类型安全。请记录这个决策。确认后直接写入。",
+      "expected_output": "创建 .knowledge/architecture.md，在 技术栈 分类下记录：使用 FastAPI，理由包含异步和类型安全。在写入前应展示确认内容。",
+      "files": [],
+      "expectations": [
+        ".knowledge/architecture.md 文件存在",
+        "文件包含 '## 技术栈' 分类标题",
+        "文件包含 'FastAPI'",
+        "文件包含 '异步' 或 '类型安全'",
+        "在写入前向用户展示了拟添加的内容"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "数据存 JSON 文件吧，比 SQLite 简单方便。记录一下。确认后直接写入。",
+      "expected_output": "在已有 architecture.md（含 技术栈 分类）中新增 数据存储 分类，记录 JSON 决策。写入前展示确认内容。",
+      "files": [],
+      "expectations": [
+        "文件包含 '## 技术栈' 和 '## 数据存储' 两个分类",
+        "文件包含 'JSON'",
+        "文件包含 '简单' 或 '方便'",
+        "在写入前向用户展示了拟添加的内容"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "还是用 SQLite 存吧，JSON 文件查询太慢了。更新一下记录。确认后直接写入。",
+      "expected_output": "检测到 数据存储 分类下 JSON 与 SQLite 冲突，向用户展示冲突信息。确认后用 SQLite 替换 JSON。",
+      "files": [],
+      "expectations": [
+        "向用户明确指出了与已有决策的冲突",
+        "文件包含 'SQLite'",
+        "JSON 条目被划线删除或替换"
+      ]
+    }
+  ]
+}

@@ -6,7 +6,8 @@
             "python *":"deny",
             "python3 *": "deny",
             "pip *":"deny",
-            "pip3 *": "deny"
+            "pip3 *": "deny",
+            "rm -rf /":"deny"
         },
     "edit": "deny"
   }
