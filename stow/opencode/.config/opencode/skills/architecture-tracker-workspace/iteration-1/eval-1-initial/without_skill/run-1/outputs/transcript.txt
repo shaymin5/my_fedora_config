@@ -1,0 +1,16 @@
+Task: Record architecture decision to use FastAPI as the web framework.
+
+Actions taken:
+
+1. Examined the workspace at /home/shaymin/gameboy/graph/ — contains main.py, pyproject.toml, and related files.
+2. Created output directory at /home/shaymin/.config/opencode/skills/architecture-tracker-workspace/iteration-1/eval-1-initial/without_skill/outputs/
+3. Created .knowledge/ subdirectory to house architecture decision records.
+4. Wrote .knowledge/adr-001-fastapi.md — an Architecture Decision Record (ADR) documenting the decision to use FastAPI as the web framework, including:
+   - Status: Accepted
+   - Context: Async support and type safety requirements
+   - Decision: FastAPI
+   - Rationale: Comparison table vs Flask, Django, Litestar; strengths in async, type safety, OpenAPI docs
+   - Consequences: Team familiarity with asyncio, async-compatible libraries required, Pydantic adoption
+5. Wrote this transcript.
+
+Decision summary: FastAPI selected for its native async support, first-class Pydantic/type safety, and auto-generated OpenAPI documentation.

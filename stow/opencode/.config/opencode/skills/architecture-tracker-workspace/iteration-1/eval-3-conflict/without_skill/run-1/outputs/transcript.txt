@@ -1,0 +1,27 @@
+## 操作记录
+
+### 任务
+将数据存储方案从 JSON 文件切换为 SQLite，因为 JSON 文件查询太慢。
+
+### 修改的文件
+
+1. **`.knowledge/architecture.md`**
+   - 更新"数据存储"条目：
+     - 旧：`存储方案: 使用 JSON 文件 | 理由: 比 SQLite 更简单方便`
+     - 新：`存储方案: 使用 SQLite | 理由: 数据量增大后 JSON 文件查询太慢，SQLite 支持索引和高效查询`
+
+2. **`main.py`**
+   - 移除 JSON 文件的 `_load()` / `_save()` 辅助函数
+   - 新增 SQLite 数据库操作：
+     - `_get_conn()`: 创建数据库连接，启用 WAL 模式提升并发性能
+     - `_init_db()`: 自动创建 `sequences` 表（id, name, data, updated_at）
+     - `_migrate_from_json()`: 自动从旧的 `sequences.json` 迁移数据到 SQLite，并将 JSON 文件重命名为 `.bak` 备份
+     - `_row_to_out()`: 将 SQLite Row 对象转为 JSON 响应格式
+   - 所有 CRUD 端点已改用 SQLite 查询
+   - `DB_FILE` 从 `Path("sequences.json")` 改为 `Path("sequences.db")`
+
+### 技术说明
+- 使用 Python 标准库 `sqlite3`，无需额外依赖
+- 启用 WAL 模式以支持读写并发
+- 启动时自动建表并迁移旧 JSON 数据
+- data 字段在 SQLite 中以 JSON 字符串形式存储

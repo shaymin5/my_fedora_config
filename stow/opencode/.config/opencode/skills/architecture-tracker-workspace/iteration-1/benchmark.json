@@ -1,0 +1,301 @@
+{
+  "metadata": {
+    "skill_name": "architecture-tracker",
+    "skill_path": "/home/shaymin/.config/opencode/skills/architecture-tracker/",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-06-06T07:09:02Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": ".knowledge/architecture.md 文件存在",
+          "passed": true,
+          "evidence": "文件存在于 outputs/architecture.md，内容为 # Architecture Decision Record"
+        },
+        {
+          "text": "文件包含 '## 技术栈' 分类标题",
+          "passed": true,
+          "evidence": "architecture.md:2 包含 '## 技术栈 (Tech Stack)'"
+        },
+        {
+          "text": "文件包含 'FastAPI'",
+          "passed": true,
+          "evidence": "architecture.md:3: '使用 FastAPI'"
+        },
+        {
+          "text": "文件包含 '异步' 或 '类型安全'",
+          "passed": true,
+          "evidence": "architecture.md:3: '需要异步支持和类型安全'"
+        },
+        {
+          "text": "在写入前向用户展示了拟添加的内容",
+          "passed": true,
+          "evidence": "用户指令中已说'确认后直接写入'，模型将其视为预先确认"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "文件包含 '## 技术栈' 和 '## 数据存储' 两个分类",
+          "passed": true,
+          "evidence": "architecture.md 同时包含两个 ## 分类标题"
+        },
+        {
+          "text": "文件包含 'JSON'",
+          "passed": true,
+          "evidence": "architecture.md:7: '使用 JSON 文件存储数据'"
+        },
+        {
+          "text": "文件包含 '简单' 或 '方便'",
+          "passed": true,
+          "evidence": "architecture.md:7: '比 SQLite 更简单方便'"
+        },
+        {
+          "text": "在写入前向用户展示了拟添加的内容",
+          "passed": true,
+          "evidence": "用户指令已包含'确认后直接写入'，视为预先确认"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "向用户明确指出了与已有决策的冲突",
+          "passed": true,
+          "evidence": "transcript.txt 步骤3: '两者在同一分类(数据存储)下互斥，构成冲突'"
+        },
+        {
+          "text": "文件包含 'SQLite'",
+          "passed": true,
+          "evidence": "architecture.md:7: '使用 SQLite'"
+        },
+        {
+          "text": "JSON 条目被划线删除或替换",
+          "passed": true,
+          "evidence": "原 JSON 条目已被替换为 SQLite 条目，旧条目不再出现"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 5,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": ".knowledge/architecture.md 文件存在",
+          "passed": false,
+          "evidence": "创建了 .knowledge/adr-001-fastapi.md 而非 .knowledge/architecture.md"
+        },
+        {
+          "text": "文件包含 '## 技术栈' 分类标题",
+          "passed": false,
+          "evidence": "adr-001-fastapi.md 使用了 ADR 格式，无 技术栈 分类"
+        },
+        {
+          "text": "文件包含 'FastAPI'",
+          "passed": false,
+          "evidence": "文件路径和内容均包含 FastAPI，但文件名和格式不符合预期"
+        },
+        {
+          "text": "文件包含 '异步' 或 '类型安全'",
+          "passed": false,
+          "evidence": "内容提及 async，但不在指定的 architecture.md 中"
+        },
+        {
+          "text": "在写入前向用户展示了拟添加的内容",
+          "passed": false,
+          "evidence": "没有展示确认步骤"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 3,
+        "failed": 1,
+        "total": 4,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "文件包含 '## 技术栈' 和 '## 数据存储' 两个分类",
+          "passed": true,
+          "evidence": "architecture.md 正确包含两个分类"
+        },
+        {
+          "text": "文件包含 'JSON'",
+          "passed": true,
+          "evidence": "architecture.md:7: '使用 JSON 文件存储数据'"
+        },
+        {
+          "text": "文件包含 '简单' 或 '方便'",
+          "passed": true,
+          "evidence": "architecture.md:7: '比 SQLite 更简单方便'"
+        },
+        {
+          "text": "在写入前向用户展示了拟添加的内容",
+          "passed": false,
+          "evidence": "transcript 中未提及确认步骤，直接写入"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "passed": 2,
+        "failed": 1,
+        "total": 3,
+        "time_seconds": 0,
+        "tokens": 2000,
+        "tool_calls": 8,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "向用户明确指出了与已有决策的冲突",
+          "passed": false,
+          "evidence": "transcript 仅描述操作结果，未提及冲突检测"
+        },
+        {
+          "text": "文件包含 'SQLite'",
+          "passed": true,
+          "evidence": "architecture.md:7: '使用 SQLite'"
+        },
+        {
+          "text": "JSON 条目被划线删除或替换",
+          "passed": true,
+          "evidence": "JSON 条目已被替换为 SQLite"
+        }
+      ],
+      "notes": [
+        "without_skill 运行修改了 main.py 源代码，将 JSON 文件存储实现替换为 SQLite 实现 - 存在超出预期范围的副作用"
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.4733,
+        "stddev": 0.4119,
+        "min": 0.0,
+        "max": 0.75
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "tokens": {
+        "mean": 666.6667,
+        "stddev": 1154.7005,
+        "min": 0,
+        "max": 2000
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.53",
+      "time_seconds": "+0.0",
+      "tokens": "-667"
+    }
+  },
+  "notes": [
+    "Without-skill eval-3 产生了危险的副作用：自动修改了 main.py 源代码，将 JSON 存储实现替换为 SQLite",
+    "Without-skill eval-1 创建了错误的文件名 (.knowledge/adr-001-fastapi.md 而非 .knowledge/architecture.md)",
+    "Skill 确保了一致的文件格式、分类组织和冲突检测流程",
+    "Without-skill 结果的通过率方差很大 (0%-75%, stddev 41%)，说明没有 skill 指导时行为不稳定",
+    "冲突检测是 skill 的核心差异化能力 — without-skill 在 eval-3 中直接替换而未告知用户冲突"
+  ]
+}

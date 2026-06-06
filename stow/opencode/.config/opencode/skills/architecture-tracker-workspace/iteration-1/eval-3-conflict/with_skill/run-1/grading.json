@@ -1,0 +1,8 @@
+{
+  "expectations": [
+    {"text": "向用户明确指出了与已有决策的冲突", "passed": true, "evidence": "transcript.txt 步骤3: '两者在同一分类(数据存储)下互斥，构成冲突'"},
+    {"text": "文件包含 'SQLite'", "passed": true, "evidence": "architecture.md:7: '使用 SQLite'"},
+    {"text": "JSON 条目被划线删除或替换", "passed": true, "evidence": "原 JSON 条目已被替换为 SQLite 条目，旧条目不再出现"}
+  ],
+  "summary": {"passed": 3, "failed": 0, "total": 3, "pass_rate": 1.0}
+}
