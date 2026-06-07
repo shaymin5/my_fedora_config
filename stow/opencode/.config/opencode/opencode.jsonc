@@ -1,16 +1,18 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  // "plugin": ["oh-my-openagent@disabled"],
-
-  "plugin": ["opencode-notify@lastest"],
-"permission": {
+  // "plugin": ["@mohak34/opencode-notifier"],
+  // "autoupdate": false,
+  "permission": {
     "bash": {
-            "python *":"deny",
-            "python3 *": "deny",
-            "pip *":"deny",
-            "pip3 *": "deny",
-            "rm -rf /":"deny"
-        },
-    "edit": "deny"
-  }
+      "python *": "deny",
+      "python3 *": "deny",
+      "pip *": "deny",
+      "pip3 *": "deny",
+      "rm -rf /": "deny",
+    },
+    // "edit": "deny"
+    "external_directory": {
+      "~/.config/opencode/skills/*": "allow",
+    },
+  },
 }
