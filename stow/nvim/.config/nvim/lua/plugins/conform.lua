@@ -11,6 +11,7 @@ return {
             html = { "prettierd", "prettier" },
             xml = { "xmlformatter" },
             nfo = { "xmlformatter" },
+            toml = { "taplo" },
         },
     },
 }
