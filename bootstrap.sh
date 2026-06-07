@@ -12,6 +12,9 @@ bash $HOME/dotfiles/script/github.sh
 # 换源
 bash $HOME/dotfiles/script/network.sh
 
+# stow
+bash $HOME/dotfiles/script/stow.sh
+
 # DNF
 bash $HOME/dotfiles/packages/dnf.sh
 
