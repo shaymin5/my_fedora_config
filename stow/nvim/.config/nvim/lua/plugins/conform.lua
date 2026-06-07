@@ -3,7 +3,7 @@ return {
     opts = {
         -- 配置不同文件类型对应的格式化工具
         formatters_by_ft = {
-            python = { "ruff-fix" },
+            python = { "ruff" },
             lua = { "stylua" },
             json = { "prettierd" },
             jsonc = { "prettierd" },
