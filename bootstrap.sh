@@ -3,17 +3,17 @@
 sudo -v
 set -e
 
-# git config
-bash ./git.sh
-
 # ssh auto generate
-bash ./ssh.sh
+bash $HOME/dotfiles/script/ssh.sh
+
+# 配置github端口
+bash $HOME/dotfiles/script/github.sh
 
 # 换源
-bash ./network.sh
+bash $HOME/dotfiles/script/network.sh
 
 # DNF
-bash ./packages/dnf.sh
+bash $HOME/dotfiles/packages/dnf.sh
 
 # Flatpak
-bash ./packages/flatpak.sh
+bash $HOME/dotfiles/packages/flatpak.sh
