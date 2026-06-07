@@ -13,8 +13,8 @@ environment {
     HTTP_PROXY "http://127.0.0.1:7890"
     HTTPS_PROXY "http://127.0.0.1:7890"
 
-    all_proxy "socks5://127.0.0.1:7890"
-    ALL_PROXY "socks5://127.0.0.1:7890"
+    // all_proxy "socks5://127.0.0.1:7890"
+    // ALL_PROXY "socks5://127.0.0.1:7890"
 
     NO_PROXY "localhost,127.0.0.1,::1,.local,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12"
     no_proxy "localhost,127.0.0.1,::1,.local,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12"
@@ -329,6 +329,40 @@ animations {
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
+// Workspace 上下切换（垂直手势也用这个）——用 spring 更有“弹性”动感
+    workspace-switch {
+        spring damping-ratio=0.85 stiffness=500 epsilon=0.0001
+    }
+
+    // 水平滚动（左右切换窗口/列时最常用）——这是你最想加强的部分
+    horizontal-view-movement {
+        spring damping-ratio=0.8 stiffness=700 epsilon=0.0001
+    }
+
+    // 窗口打开（更炫一点）
+    window-open {
+        duration-ms 250
+        curve "ease-out-expo"
+    }
+
+    // 窗口关闭
+    window-close {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+
+    // 窗口移动和调整大小（保持同步好看）
+    window-movement {
+        spring damping-ratio=0.9 stiffness=700 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=0.9 stiffness=700 epsilon=0.0001
+    }
+
+    // Overview（Super+Tab 或类似）更丝滑
+    overview-open-close {
+        spring damping-ratio=0.8 stiffness=650 epsilon=0.0001
+    }
 }
 
 // Window rules let you adjust behavior for individual windows.

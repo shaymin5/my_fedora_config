@@ -25,4 +25,8 @@ sudo dnf install chrome -y
 # steam
 sudo dnf install steam -y
 
-sudo dnf install noctalia-shell
+sudo dnf install noctalia-shell -y
+
+# docker
+sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo -y
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y

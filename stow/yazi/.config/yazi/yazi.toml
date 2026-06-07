@@ -51,3 +51,4 @@ pdf = [
 open = [
   { run = 'xdg-open "$@"', desc = "System Default", orphan = true }
 ]
+
