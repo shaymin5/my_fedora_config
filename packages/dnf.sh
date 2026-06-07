@@ -36,3 +36,6 @@ sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 # jellyfin
 sudo dnf install jellyfin -y
 sudo systemctl enable --now jellyfin
+
+# celluloid
+sudo dnf install celluloid -y
