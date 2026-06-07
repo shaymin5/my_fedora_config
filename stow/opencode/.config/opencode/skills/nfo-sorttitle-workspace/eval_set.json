@@ -1,0 +1,86 @@
+[
+  {
+    "query": "帮我给这个目录下的nfo文件都加上sorttitle标签，让Kodi按集数排序",
+    "should_trigger": true
+  },
+  {
+    "query": "我的Jellyfin剧集顺序是乱的，给nfo补充sorttitle字段",
+    "should_trigger": true
+  },
+  {
+    "query": "add sorttitle to all episode nfo files in this folder so Plex sorts them correctly",
+    "should_trigger": true
+  },
+  {
+    "query": "这些.nfo文件缺少排序标签，按照每集的集号补上sorttitle",
+    "should_trigger": true
+  },
+  {
+    "query": "处理一下这个剧的episode nfo，我需要它们按编号排序，加上sorttitle",
+    "should_trigger": true
+  },
+  {
+    "query": "fix the episode ordering in my Kodi library, the nfo files need sorttitle tags",
+    "should_trigger": true
+  },
+  {
+    "query": "就这个目录，里面的nfo插入sorttitle，值取episode号，零填充三位",
+    "should_trigger": true
+  },
+  {
+    "query": "把nfo文件里的排序弄一下，加<sorttitle>标签用集数",
+    "should_trigger": true
+  },
+  {
+    "query": "i have a bunch of tv episode nfos that need sorttitle for proper sorting in media center",
+    "should_trigger": true
+  },
+  {
+    "query": "这剧集nfo排序有问题，电视上显示顺序不对，帮我加sorttitle纠正",
+    "should_trigger": true
+  },
+  {
+    "query": "把这些nfo文件里的plot标签内容全部翻译成英文",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我整理一下这个目录的视频文件命名，格式不对",
+    "should_trigger": false
+  },
+  {
+    "query": "我的Kodi海报不显示，看看这些nfo文件有什么问题",
+    "should_trigger": false
+  },
+  {
+    "query": "根据这些mkv视频文件生成对应的nfo模板文件",
+    "should_trigger": false
+  },
+  {
+    "query": "These nfo files have incorrect episode descriptions, can you fix them?",
+    "should_trigger": false
+  },
+  {
+    "query": "给Plex刮削这批剧的元数据，把演员和评分补上",
+    "should_trigger": false
+  },
+  {
+    "query": "用tinyMediaManager对这个目录抓取剧集信息，更新nfo",
+    "should_trigger": false
+  },
+  {
+    "query": "nfo文件里的<plot>太长了，帮我精简一下剧情描述",
+    "should_trigger": false
+  },
+  {
+    "query": "这个nfo文件编码有问题，打开显示乱码了能修吗",
+    "should_trigger": false
+  },
+  {
+    "query": "给所有电影的nfo文件加上sorttitle标签",
+    "should_trigger": true
+  },
+  {
+    "query": "处理nfo文件给剧集排序",
+    "should_trigger": true
+  }
+]
