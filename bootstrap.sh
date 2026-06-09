@@ -20,3 +20,6 @@ bash $HOME/dotfiles/packages/dnf.sh
 
 # Flatpak
 bash $HOME/dotfiles/packages/flatpak.sh
+
+# System
+bash $HOME/dotfiles/script/system.sh
