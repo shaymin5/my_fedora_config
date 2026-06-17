@@ -297,7 +297,7 @@ gestures {
 spawn-at-startup "qs" "-c" "noctalia-shell"
 spawn-at-startup "google-chrome-stable" "https://www.bilibili.com/"
 spawn-at-startup "udiskie" "--tray"
-spawn-at-startup "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "50%"
+spawn-at-startup "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.5"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
