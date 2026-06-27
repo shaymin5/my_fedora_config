@@ -3,14 +3,21 @@ name: anime-nfo-generator
 description: |
   为动画剧集的 MKV 文件自动生成 Kodi/Jellyfin/Plex/Emby 兼容的 NFO 元数据文件。
   
-  当用户需要为动画匹配剧集标题、刮削元数据、补全媒体库剧集信息时使用此 skill。
-  典型触发场景：
-  - 用户有 MKV 动画文件，Jellyfin/Plex/Kodi/Emby/Infuse 显示为 Unknown 或无法识别
-  - 用户需要为动画目录生成 tvshow.nfo 和各话 episode NFO
-  - 用户想从 Wikipedia 获取各话标题并写入元数据文件
-  - 用户说"帮这个动画匹配标题""生成nfo""刮削元数据""补全剧集信息"
+  当用户需要让播放器识别动画的剧集标题时使用此 skill。关键判断标准：
+  - 用户的目标是"生成/创建 NFO 文件"（而非排查已存在的 NFO 为什么失效）
+  - 用户说的是"剧集标题/集数/各话信息"（而非视频编码、分辨率、码率等技术参数）
   
-  不触发的情况：单纯修改已有 NFO 内容、ffmpeg 视频处理、mkvmerge 封装字幕、重命名文件、统计视频编码信息等
+  典型触发场景：
+  - Jellyfin/Plex/Kodi/Emby/Infuse 里动画显示为 Unknown Episode，需要补全标题
+  - 有 MKV 文件但缺少 tvshow.nfo 或 episode NFO，需要从零生成
+  - 想为动画匹配 Wikipedia 上的各话标题、创建元数据文件
+  - 用户说"生成nfo""刮削剧集""匹配标题""补媒体库信息""动画没标题"
+  
+  明确不触发：
+  - NFO 文件已存在但播放器扫不到（Kodi 配置问题，不是生成问题）
+  - ffmpeg/mkvmerge 操作mkv封装
+  - 提取视频技术元数据做统计（编码/分辨率/码率→CSV）
+  - 单纯重命名文件、修改已有 XML/NFO 内容
 ---
 
 # Anime NFO Generator
