@@ -11,6 +11,9 @@ bash ./bootstrap.sh
 务必看一看backups/READMD.md的内容
 需检查option按需安装内容
 
+# Optional
+install.sh用于安装各种其他工具
+
 # 说明
 
 - 解决网络问题，通过usb或无线方式拿到网络代理软件的安装包

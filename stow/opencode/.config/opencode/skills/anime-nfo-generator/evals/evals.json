@@ -1,0 +1,23 @@
+{
+  "skill_name": "anime-nfo-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我正在整理动画媒体库。目录 /tmp/test-anime-slayer 下有几集《秀逗魔导士》(Slayers, 1995) 的 MKV 文件。帮我生成带中文标题的 NFO 文件。如果没有中文标题就用日语原标题。文件命名格式是 [Slayers][01][...].mkv，一共 3 话。",
+      "expected_output": "生成 tvshow.nfo + 3 个 episode NFO 文件，标题来源中文或日语 Wikipedia",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我有一些 OVA 的 MKV 文件在 /tmp/test-ova-dir 下，作品是《罗德岛战记》(Record of Lodoss War, 1990) 的 OVA。帮我生成 NFO 元数据，OVA 应该标记为 Season 0。",
+      "expected_output": "OVA 的 NFO 中 season=0，标题来自 Wikipedia",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "帮我检查 /tmp/test-anime-mixed 目录下的 MKV 文件，看看哪些缺少 NFO 元数据，然后帮缺失的生成。这个目录里有 TV 正片和 OVA 混在一起。",
+      "expected_output": "只对缺少 NFO 的 MKV 文件生成，TV 标记 S01，OVA 标记 S00",
+      "files": []
+    }
+  ]
+}
