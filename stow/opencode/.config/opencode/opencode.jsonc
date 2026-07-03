@@ -13,6 +13,7 @@
     // "edit": "deny"
     "external_directory": {
       "~/.config/opencode/skills/*": "allow",
+      "/tmp/*": "allow",
     },
   },
 }

@@ -1,9 +1,0 @@
-[mgr]
-prepend_keymap = [
-    # 先按 c 再按 r 触发命令
-    { on = ["c", "r"],
-    # run = "shell 'rclone copy \"$@\" ~/Downloads/'",
-    # run = "shell 'for f in \"$@\"; do rclone copy \"$f\" ~/Downloads/ --progress; done'",
-    run = "shell 'for f in \"$@\"; do name=$(basename \"$f\"); rclone copy \"$f\" ~/Downloads/\"$name\" --progress; done'",
-    desc = "rclone download" },
-]
