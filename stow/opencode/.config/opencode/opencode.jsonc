@@ -1,7 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "deepseek/deepseek-v4-pro",
   // "plugin": ["@mohak34/opencode-notifier"],
-  "autoupdate": true,
+  "autoupdate": false,
   "permission": {
     "bash": {
       "python *": "deny",
@@ -14,6 +15,9 @@
     "external_directory": {
       "~/.config/opencode/skills/*": "allow",
       "/tmp/*": "allow",
+    },
+    "read": {
+      "*": "allow",
     },
   },
 }

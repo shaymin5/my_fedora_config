@@ -25,6 +25,12 @@ fi
 unset rc
 
 # user config
+
+# 加载全局私有环境变量
+if [ -f ~/.config/secrets/env ]; then
+    source ~/.config/secrets/env
+fi
+
 # starship
 eval "$(starship init bash)"
 
