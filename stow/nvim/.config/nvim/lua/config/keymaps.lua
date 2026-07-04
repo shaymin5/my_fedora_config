@@ -26,3 +26,8 @@ end, { desc = "Toggle terminal at project root" })
 -- Terminal mode: 关闭终端
 vim.keymap.set("t", "<C-_>", "<C-\\><C-n>:q<CR>", { desc = "Close terminal" })
 vim.keymap.set("t", "<C-/>", "<C-\\><C-n>:q<CR>", { desc = "Close terminal" })
+
+-- CodeCompanionChat
+vim.keymap.set({ "n", "v" }, "<leader>ac", ":CodeCompanionChat Toggle<CR>", { desc = "Toggle Chat" })
+vim.keymap.set("n", "<leader>aa", ":CodeCompanionChat<CR>", { desc = "Open Chat" })
+vim.keymap.set("v", "<leader>aa", ":CodeCompanionChat Add<CR>", { desc = "Add selection to Chat" })
