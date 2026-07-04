@@ -4,8 +4,10 @@ return {
     opts = {
         interactions = {
             chat = {
-                adapter = "opencode",
-                model = "deepseek-v4-pro",
+                adapter = {
+                    name = "opencode",
+                    model = "deepseek/deepseek-v4-pro",
+                },
             },
         },
     },
