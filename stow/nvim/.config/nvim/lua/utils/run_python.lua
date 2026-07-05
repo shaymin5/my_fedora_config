@@ -130,6 +130,25 @@ function M.get_absolute_file_path()
     return vim.fn.expand("%:p")
 end
 
+-- 复制运行当前 Python 文件的命令到系统剪贴板
+function M.copy_python_run_command()
+    if vim.bo.filetype ~= "python" then
+        vim.notify("当前文件不是 Python 文件", vim.log.levels.WARN)
+        return
+    end
+
+    local absolute_path = M.get_absolute_file_path()
+    local project_root = M.get_project_root()
+
+    absolute_path = require("utils.platform").normalize_path(absolute_path)
+    local escaped_path = vim.fn.shellescape(absolute_path)
+    local escaped_root = vim.fn.shellescape(project_root)
+
+    local cmd = "cd " .. escaped_root .. " && uv run python " .. escaped_path
+    vim.fn.setreg("+", cmd)
+    vim.notify("已复制运行命令: " .. cmd, vim.log.levels.INFO)
+end
+
 -- 运行当前 Python 文件
 function M.run_python_file()
     -- 检查文件类型
@@ -145,38 +164,30 @@ function M.run_python_file()
     local project_root = M.get_project_root()
     local term = M.get_python_terminal_for_project()
 
-    -- 路径处理
     absolute_path = require("utils.platform").normalize_path(absolute_path)
+    local escaped_path = vim.fn.shellescape(absolute_path)
+    local escaped_root = vim.fn.shellescape(project_root)
 
-    -- 记录之前的状态
+    -- 如果终端没打开，先打开（bash/zsh 初始化需要时间）
     local was_open = term:is_open()
-
-    -- 如果终端已打开，先关闭
-    if was_open then
-        term:close()
+    if not was_open then
+        term:open()
     end
 
-    -- 重新打开终端，确保从项目根目录启动
-    term.dir = project_root
-    term:open()
-
-    -- 等待终端打开，然后发送命令
+    local delay = was_open and 50 or 300
     vim.defer_fn(function()
-        -- 确保进入插入模式
-        vim.cmd("startinsert!")
-
-        -- 使用绝对路径运行 Python 文件
-        local run_cmd = 'uv run python "' .. absolute_path .. '"'
-
-        -- 发送命令
-        term:send(run_cmd)
-
-        -- 确保焦点在终端窗口
         if term.window and vim.api.nvim_win_is_valid(term.window) then
             vim.api.nvim_set_current_win(term.window)
-            M.ensure_terminal_mode(term.id)
         end
-    end, 150)
+        vim.cmd("startinsert!")
+
+        -- cd 到项目根目录，清屏，运行 Python 文件
+        term:send({
+            "cd " .. escaped_root .. " && uv run python " .. escaped_path,
+        })
+
+        M.ensure_terminal_mode(term.id)
+    end, delay)
 end
 
 -- 打开终端但不运行任何命令

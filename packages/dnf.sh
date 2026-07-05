@@ -39,3 +39,6 @@ sudo systemctl enable --now jellyfin
 
 # celluloid
 sudo dnf install celluloid -y
+
+# sqlite
+sudo dnf install sqlite sqlite-devel -y

@@ -1,26 +1,27 @@
 return {
-  "MeanderingProgrammer/render-markdown.nvim",
-  opts = {
-    code = {
-      sign = false,
-      width = "block",
-      right_pad = 1,
-    },
-    heading = {
-      sign = false,
-      icons = {},
-    },
-    checkbox = {
-      enabled = false,
-    },
-  },
-  ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
-  config = function(_, opts)
-    require("render-markdown").setup(opts)
-    Snacks.toggle({
-      name = "Render Markdown",
-      get = require("render-markdown").get,
-      set = require("render-markdown").set,
-    }):map("<leader>um")
-  end,
+    "jakewvincent/mkdnflow.nvim",
+    ft = { "markdown" },
+    config = function()
+        require("mkdnflow").setup({
+            modules = {
+                links = true,
+                tables = false,
+            },
+            links = {
+                style = "markdown",
+                implicit_extension = ".md",
+            },
+            perspective = {
+                priority = "first", -- 优先用当前文件所在目录解析相对路径
+            },
+            mappings = {
+                -- 关键修复：用 MkdnEnter 而不是 MkdnFollowLink
+                MkdnEnter = { { "n", "v" }, "<CR>" }, -- 回车跳转链接
+                MkdnFollowLink = false, -- 避免冲突
+                MkdnCreateLink = { "n", "<leader>ml" },
+                -- 可选：增加 gf 跳转（更符合 nvim 习惯）
+                MkdnGoBack = { "n", "<BS>" }, -- Backspace 返回上一个文件
+            },
+        })
+    end,
 }

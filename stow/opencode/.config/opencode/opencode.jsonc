@@ -18,6 +18,8 @@
     },
     "read": {
       "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
     },
   },
 }
