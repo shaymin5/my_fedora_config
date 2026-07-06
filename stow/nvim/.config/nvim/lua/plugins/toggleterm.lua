@@ -23,7 +23,7 @@ return {
             height = function() -- 动态高度
                 return math.floor(vim.o.lines * 0.8) -- 80% 屏幕高度
             end,
-            winblend = 20, -- 透明度
+            winblend = 0, -- 透明度
         },
 
         -- 终端高亮
