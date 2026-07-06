@@ -29,6 +29,7 @@ return {
         opts = {
             servers = {
                 basedpyright = {},
+                ruff = { enabled = false },
             },
         },
     },
