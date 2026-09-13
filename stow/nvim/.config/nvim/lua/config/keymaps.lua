@@ -1,6 +1,13 @@
 -- 在 lua/config/keymaps.lua 文件中添加以下内容
 local run_python = require("utils.run_python")
 
+-- <leader>fy = 复制绝对路径到剪贴板
+vim.keymap.set("n", "<leader>fy", function()
+    local path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", path) -- + 是系统剪贴板
+    vim.notify("已复制: " .. path, vim.log.levels.INFO)
+end, { desc = "复制当前文件绝对路径" })
+
 -- 运行 Python 文件
 vim.keymap.set("n", "<leader>rr", function()
     run_python.run_python_file()
