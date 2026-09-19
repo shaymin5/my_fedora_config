@@ -24,22 +24,22 @@ rules = [
   { mime = "application/pdf", use = "pdf" },
 
   # Excel
-  { name = "*.xlsx", use = "excel" },
-  { name = "*.xls", use = "excel" },
+  { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", use = "excel" },
+  { mime = "application/vnd.ms-excel", use = "excel" },
 ]
 
 [opener]
 
-edit = [{ run = 'kitty -e nvim "$@"', desc = "Neovim", block = true }]
+edit = [{ run = 'kitty -e nvim %s', desc = "Neovim", block = true }]
 
-image = [{ run = 'imv "$@"', desc = "Image Viewer (imv)", orphan = true }]
+image = [{ run = 'imv %s', desc = "Image Viewer (imv)", orphan = true }]
 
-video = [{ run = 'celluloid "$@"', desc = "celluloid Player", orphan = true }]
+video = [{ run = 'celluloid %s', desc = "celluloid Player", orphan = true }]
 
-audio = [{ run = 'celluloid "$@"', desc = "celluloid Audio", orphan = true }]
+audio = [{ run = 'celluloid %s', desc = "celluloid Audio", orphan = true }]
 
-pdf = [{ run = 'evince "$@"', desc = "PDF Viewer", orphan = true }]
+pdf = [{ run = 'evince %s', desc = "PDF Viewer", orphan = true }]
 
-excel = [{ run = 'libreoffice "$@"', desc = "LibreOffice Calc", orphan = true }]
+excel = [{ run = 'libreoffice %s', desc = "LibreOffice Calc", orphan = true }]
 
-open = [{ run = 'xdg-open "$@"', desc = "System Default", orphan = true }]
+open = [{ run = 'xdg-open %s', desc = "System Default", orphan = true }]

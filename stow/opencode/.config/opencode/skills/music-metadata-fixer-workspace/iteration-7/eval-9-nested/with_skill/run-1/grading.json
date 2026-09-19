@@ -1,0 +1,55 @@
+{
+  "expectations": [
+    {
+      "text": "Album A: TIT2 == native name from filename",
+      "passed": true,
+      "evidence": "{'01 坂本昌之 - 古代の神々': True, '02 坂本昌之 - 母と子': True, '03 坂本昌之 - アケ村': True}"
+    },
+    {
+      "text": "Album A: no romanized title left",
+      "passed": true,
+      "evidence": "{}"
+    },
+    {
+      "text": "Album A: junk .lrc deleted, real .lrc kept",
+      "passed": true,
+      "evidence": "junk_gone=True real_kept=True"
+    },
+    {
+      "text": "Album B: renamed from tags to 0N 坂本昌之 - <title>",
+      "passed": true,
+      "evidence": "['01 坂本昌之 - 明日.mp3', '02 坂本昌之 - アケ村.mp3']"
+    },
+    {
+      "text": "Album B: no old romanized filenames",
+      "passed": true,
+      "evidence": "[]"
+    },
+    {
+      "text": "Album C: Disc 1/Disc 2 preserved, not flattened",
+      "passed": true,
+      "evidence": "discs=True files=True flattened=[]"
+    },
+    {
+      "text": "scans/cover.jpg untouched",
+      "passed": true,
+      "evidence": "True"
+    },
+    {
+      "text": "Album A keeps TALB 'Album A', Album B keeps 'Album B'",
+      "passed": true,
+      "evidence": "A={'Album A'} B={'Album B'}"
+    },
+    {
+      "text": "7 audio files present and decodable",
+      "passed": true,
+      "evidence": "n=7"
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1.0
+  }
+}

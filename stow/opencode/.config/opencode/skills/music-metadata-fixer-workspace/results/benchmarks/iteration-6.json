@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "skill_name": "music-metadata-fixer",
+    "skill_path": "/home/shaymin/.config/opencode/skills/music-metadata-fixer",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-09-19T06:33:10Z",
+    "evals_run": [
+      7,
+      8
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 7,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "TIT2 unchanged (wrong native filenames did not overwrite correct tags)",
+          "passed": true,
+          "evidence": "TIT2 by track: {1: '古代の神々', 2: '母と子', 3: '明日'}"
+        },
+        {
+          "text": "TPE1 remains 坂本昌之",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': '坂本昌之', '02 坂本昌之 - 母と子.mp3': '坂本昌之', '03 坂本昌之 - 明日.mp3': '坂本昌之'}"
+        },
+        {
+          "text": "Filenames are the tag-derived pattern",
+          "passed": true,
+          "evidence": "['01 坂本昌之 - 古代の神々.mp3', '02 坂本昌之 - 母と子.mp3', '03 坂本昌之 - 明日.mp3']"
+        },
+        {
+          "text": "No old filenames (王獣/旅立ち/荘厳) remain",
+          "passed": true,
+          "evidence": "set()"
+        },
+        {
+          "text": "Audio still decodes",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Every TIT2 is the correct native title",
+          "passed": true,
+          "evidence": "TIT2 by track: {1: '古代の神々', 2: '母と子', 3: '明日', 4: 'アケ村'}"
+        },
+        {
+          "text": "TPE1 remains 坂本昌之 on all 4",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': '坂本昌之', '02 坂本昌之 - 母と子.mp3': '坂本昌之', '03 坂本昌之 - 明日.mp3': '坂本昌之', '04 坂本昌之 - アケ村.mp3': '坂本昌之'}"
+        },
+        {
+          "text": "Every filename is 0N 坂本昌之 - <native>",
+          "passed": true,
+          "evidence": "['01 坂本昌之 - 古代の神々.mp3', '02 坂本昌之 - 母と子.mp3', '03 坂本昌之 - 明日.mp3', '04 坂本昌之 - アケ村.mp3']"
+        },
+        {
+          "text": "No old filenames (Ashita.mp3, Ake Mura.mp3) remain",
+          "passed": true,
+          "evidence": "set()"
+        },
+        {
+          "text": "Audio still decodes",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True, '04 坂本昌之 - アケ村.mp3': True}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "TIT2 unchanged (wrong native filenames did not overwrite correct tags)",
+          "passed": true,
+          "evidence": "TIT2 by track: {1: '古代の神々', 2: '母と子', 3: '明日'}"
+        },
+        {
+          "text": "TPE1 remains 坂本昌之",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': '坂本昌之', '02 坂本昌之 - 母と子.mp3': '坂本昌之', '03 坂本昌之 - 明日.mp3': '坂本昌之'}"
+        },
+        {
+          "text": "Filenames are the tag-derived pattern",
+          "passed": true,
+          "evidence": "['01 坂本昌之 - 古代の神々.mp3', '02 坂本昌之 - 母と子.mp3', '03 坂本昌之 - 明日.mp3']"
+        },
+        {
+          "text": "No old filenames (王獣/旅立ち/荘厳) remain",
+          "passed": true,
+          "evidence": "set()"
+        },
+        {
+          "text": "Audio still decodes",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Every TIT2 is the correct native title",
+          "passed": true,
+          "evidence": "TIT2 by track: {1: '古代の神々', 2: '母と子', 3: '明日', 4: 'アケ村'}"
+        },
+        {
+          "text": "TPE1 remains 坂本昌之 on all 4",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': '坂本昌之', '02 坂本昌之 - 母と子.mp3': '坂本昌之', '04 坂本昌之 - アケ村.mp3': '坂本昌之', '03 坂本昌之 - 明日.mp3': '坂本昌之'}"
+        },
+        {
+          "text": "Every filename is 0N 坂本昌之 - <native>",
+          "passed": true,
+          "evidence": "['01 坂本昌之 - 古代の神々.mp3', '02 坂本昌之 - 母と子.mp3', '03 坂本昌之 - 明日.mp3', '04 坂本昌之 - アケ村.mp3']"
+        },
+        {
+          "text": "No old filenames (Ashita.mp3, Ake Mura.mp3) remain",
+          "passed": true,
+          "evidence": "set()"
+        },
+        {
+          "text": "Audio still decodes",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '04 坂本昌之 - アケ村.mp3': True, '03 坂本昌之 - 明日.mp3': True}"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+0.0",
+      "tokens": "+0"
+    }
+  },
+  "notes": [
+    "eval-7 (misleading native filenames: filenames are real-but-wrong Japanese titles) - BOTH configs 100%: both looked up the official BVCL-19 tracklist, saw the filenames were real tracks at wrong positions, and renamed FROM tags.",
+    "eval-8 (mixed per-file: files 1-2 filename-authoritative, files 3-4 tag-authoritative) - BOTH configs 100%: both did per-file reasoning instead of one blanket policy.",
+    "Conclusion across all 9 evals: the base model at this tier already handles 'which side is authoritative', 'don't guess when ambiguous', and 'per-file mixed cases' correctly. The skill's measured edge is NOT in judgement prose but in format-specific hygiene: FLAC stray-ID3 removal (eval-4) and ID3 version preservation (eval-0).",
+    "Keep eval-5/6/7/8 as regression guards: they would catch a future skill change that makes the guidance dogmatic (e.g. hard-coding 'always trust the filename').",
+    "Timing/tokens unavailable in this harness; those columns are 0."
+  ]
+}
