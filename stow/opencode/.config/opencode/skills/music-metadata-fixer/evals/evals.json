@@ -1,0 +1,95 @@
+{
+  "skill_name": "music-metadata-fixer",
+  "evals": [
+    {
+      "id": 0,
+      "name": "romaji-to-japanese-and-legacy-cleanup",
+      "prompt": "这个文件夹是我下载的动画OST。文件名是正确的日语原名，但里面的标签全是罗马音，而且有些字段是中文的。请把标签改成和文件名一致的日语，其他罗马音/非日语字段也统一。权威信息：专辑名『獣の奏者 エリン オリジナル・サウンドトラック』，艺术家和专辑艺术家都是『坂本昌之』，年份 2009，流派 Soundtrack。另外标签里有些历史遗留问题（旧的 v1 标签、重复的日期），也一起清理干净。封面和音频不要破坏。",
+      "expected_output": "所有 title 变为文件名中的日语名；TPE1/TPE2=坂本昌之；TALB=专辑名；TCON=Soundtrack；TYER=2009；无 ID3v1；磁盘上只有一个日期帧；封面与音频保留。",
+      "files": [
+        "fixtures/eval-romaji"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "rename-by-tags-and-sync-lrc",
+      "prompt": "这三首歌的文件名很乱，但标签里的信息是对的。请把文件名改成『两位音轨号 艺术家 - 曲名』的格式（例如 07 坂本昌之 - 夜明け.mp3），音轨号补零到两位，艺术家取标签里的艺术家。每个音频都有一个同名的 .lrc 歌词文件，改名时歌词文件也要一起改，别让歌词失效。",
+      "expected_output": "文件名变为 07 坂本昌之 - 夜明け.mp3 / 34 坂本昌之 - 安堵.mp3 / 46 cossami - After the rain～TVサイズ.mp3，且每个都有同名 .lrc，标签不变。",
+      "files": [
+        "fixtures/eval-rename"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "remove-junk-lrc-keep-real",
+      "prompt": "这个文件夹里的 lrc 歌词文件很多是别的歌的垃圾占位（内容对不上），但也有真歌词。请帮我清理掉垃圾歌词，真的那些一定要保留，不要误删。mp3 文件不要动。",
+      "expected_output": "删除 01/03/04 三个垃圾 lrc，保留 02 的真歌词，4 个 mp3 不变。",
+      "files": [
+        "fixtures/eval-lrc"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "preserve-id3v2.4",
+      "prompt": "这个文件夹的 mp3 标签全是罗马音，文件名才是正确的日语原名。请把标签改成和文件名一致的日语，并把其他非日语字段也统一。权威信息：专辑名『獣の奏者 エリン オリジナル・サウンドトラック』，艺术家和专辑艺术家都是『坂本昌之』，年份 2009，流派 Soundtrack。标签里还有些遗留问题（旧的 v1 标签、多余的日期帧），一起清理干净。注意：这些文件本来就是比较新的标签版本，清理时请保持它们原有的版本，不要降级。封面和音频不要破坏。",
+      "expected_output": "All 4 titles equal the Japanese names from the filenames TPE1 and TPE2 are both 坂本昌之 on every file TALB is the album and TCON is Soundtrack on every file Every file keeps ID3 major version 4 (header byte 3 == 4) Every file has exactly one date frame, and it is TDRC (1 TDRC, 0 TYER) No file has an ID3v1 tag APIC cover is preserved on every file Audio still decodes",
+      "files": [
+        "fixtures/eval-v24"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "fix-flac-vorbis-tags",
+      "prompt": "这个文件夹是 FLAC 无损文件，标签里全是罗马音，但文件名是正确的日语原名。请把标签改成和文件名一致的日语，并统一其他字段。权威信息：专辑名『獣の奏者 エリン オリジナル・サウンドトラック』，艺术家和专辑艺术家都是『坂本昌之』，年份 2009，流派 Soundtrack。另外有些文件可能带有不该有的历史遗留标签，也一并清理，封面和音频不要破坏。",
+      "expected_output": "All 4 FLAC titles equal the Japanese names from the filenames artist and albumartist are 坂本昌之 on every file album is the album name and genre is Soundtrack on every file date is 2009 on every file No FLAC starts with an ID3 block (all start with fLaC) Cover picture preserved on every file Audio still decodes as FLAC",
+      "files": [
+        "fixtures/eval-flac"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "tags-authoritative-rename-files",
+      "prompt": "这个文件夹的文件名和里面的标签对不上。请先判断哪一边才是正确的，再让文件名和标签一致起来。文件名请用『两位音轨号 艺术家 - 曲名』的格式。不要想当然——先把你的判断依据讲清楚；如果两边都可能对、你无法确定，就先别改，告诉我你需要什么信息。",
+      "expected_output": "The correct Japanese titles are preserved in TIT2 for all 3 files (tags were NOT overwritten from the filenames) TPE1 remains 坂本昌之 for all 3 files Filenames become the tag-derived pattern (01 坂本昌之 - 古代の神々.mp3, 02 坂本昌之 - 母と子.mp3, 03 坂本昌之 - 明日.mp3) No old filenames (track1_romaji.mp3, 002.mp3, song-C.mp3) remain Audio still decodes",
+      "files": [
+        "fixtures/eval-reverse"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "ambiguous-do-not-guess",
+      "prompt": "这个文件夹里文件名的曲名和标签里的曲名对不上，请让它们一致。但如果无法确定哪个才是正确的曲名，就先不要修改任何文件，把情况告诉我。",
+      "expected_output": "TIT2 is unchanged for all 3 files (no tag was overwritten by a guessed title) Filenames are unchanged (no rename was performed on a guess) All 3 mp3 files still exist and audio still decodes",
+      "files": [
+        "fixtures/eval-ambiguous"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "misleading-native-filename",
+      "prompt": "这个文件夹里文件名的曲名和标签里的曲名对不上，而且文件名看起来也是正常的日文，不是明显的乱码。请核对清楚到底哪个才是正确的曲名，再让文件名和标签一致（文件名格式：两位音轨号 艺术家 - 曲名）。别想当然，先说明你的判断依据；如果确实无法确定，就先别改。",
+      "expected_output": "TIT2 is unchanged for all 3 files (the tags were not overwritten by the plausible-but-wrong filenames) TPE1 remains 坂本昌之 Filenames become the tag-derived pattern (01 坂本昌之 - 古代の神々.mp3, 02 坂本昌之 - 母と子.mp3, 03 坂本昌之 - 明日.mp3) No old filenames (王獣/旅立ち/荘厳) remain Audio still decodes",
+      "files": [
+        "fixtures/eval-mislead"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "mixed-per-file-authority",
+      "prompt": "这个文件夹里文件名和标签对不上，而且情况不止一种。请逐个文件判断哪一边是对的，再让每个文件的名字和标签都一致起来（文件名格式：两位音轨号 艺术家 - 曲名）。不要整批套同一个规则——不同文件可能要以不同的那边为准。",
+      "expected_output": "Every TIT2 equals the correct native title {1:古代の神々, 2:母と子, 3:明日, 4:アケ村} TPE1 remains 坂本昌之 on all 4 files Every filename matches 0N 坂本昌之 - <native title> (all 4) No old filenames (Ashita.mp3, Ake Mura.mp3) remain Audio still decodes",
+      "files": [
+        "fixtures/eval-mixed"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "nested-folders-per-release",
+      "prompt": "这个父目录下面有好几个子文件夹，每个里面都有音乐，我想让你按实际情况处理。Album A 里的文件名是正确的日语原名，但标签里的标题是罗马音——把标签改对；Album B 里反过来，标签是正确的日语，文件名是罗马音——把文件名改成『两位音轨号 艺术家 - 曲名』的格式。歌词文件里有的内容对不上，是别的歌的垃圾，帮我清掉垃圾、真的留下。Album C 下面分成了 Disc 1 / Disc 2，我不确定这算不算同一张专辑——这种你先别动，把你的判断告诉我。scans 文件夹里不是音乐，别碰。文件名和标签以哪边为准，请按每个文件夹各自的实际情况判断，不要整批套一个规则。",
+      "expected_output": "Album A: every TIT2 equals the native Japanese name from its filename (古代の神々 / 母と子 / アケ村) Album A: no romanized title tag remains (Kodai no Kamigami / Haha to Ko / Ake Mura gone) Album A: the junk .lrc was deleted and the real .lrc kept Album B: filenames become 01 坂本昌之 - 明日.mp3 and 02 坂本昌之 - アケ村.mp3 (tags unchanged, native) Album C: Disc 1/ and Disc 2/ structure preserved (not flattened) because the user asked first scans/cover.jpg still exists (non-music untouched) Album A files keep TALB 'Album A' and Album B files keep TALB 'Album B' (no cross-folder stamping) all audio files still present and decodable",
+      "files": [
+        "fixtures/eval-nested"
+      ]
+    }
+  ]
+}
