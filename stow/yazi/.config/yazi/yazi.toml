@@ -36,7 +36,9 @@ image = [{ run = 'imv %s', desc = "Image Viewer (imv)", orphan = true }]
 
 video = [{ run = 'celluloid %s', desc = "celluloid Player", orphan = true }]
 
-audio = [{ run = 'celluloid %s', desc = "celluloid Audio", orphan = true }]
+audio = [
+  { run = 'mpv --force-window=yes %s', desc = "celluloid Audio", orphan = true },
+]
 
 pdf = [{ run = 'evince %s', desc = "PDF Viewer", orphan = true }]
 
