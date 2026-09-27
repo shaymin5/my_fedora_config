@@ -48,3 +48,15 @@ vim.keymap.set("n", "<leader>cd", function()
     vim.fn.setreg("+", cwd)
     print("已复制项目目录: " .. cwd)
 end, { desc = "复制当前项目目录路径" })
+
+-- 按空格+r键替换当前选中文本
+vim.keymap.set("v", "<leader>r", function()
+    vim.cmd("normal! y")
+    local text = vim.fn.getreg('"')
+    text = vim.fn.escape(text, [[\/.*$^~[]])
+    vim.fn.feedkeys(":%s/" .. text .. "/", "n")
+end, { desc = "Substitute visual selection" })
+
+-- 前进后退
+vim.keymap.set("n", "<C-,>", "<C-o>") -- back
+vim.keymap.set("n", "<C-.>", "<C-i>") -- forward

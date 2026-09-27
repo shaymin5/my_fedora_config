@@ -11,4 +11,5 @@ flatpak install org.jellyfin.JellyfinDesktop -y
 
 # tauonmb
 flatpak install flathub com.github.taiko2k.tauonmb -y
-flatpak override --user --filesystem=~/Music com.github.taiko2k.tauonmb
+flatpak override --user --filesystem=/srv/media/music/ com.github.taiko2k.tauonmb
+flatpak override --user --filesystem=~/Music/ com.github.taiko2k.tauonmb

@@ -42,3 +42,6 @@ sudo dnf install celluloid -y
 
 # sqlite
 sudo dnf install sqlite sqlite-devel -y
+
+# bsdtar
+sudo dnf install bsdtar -y
