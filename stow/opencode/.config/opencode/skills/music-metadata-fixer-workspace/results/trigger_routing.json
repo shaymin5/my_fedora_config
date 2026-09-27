@@ -1,0 +1,30 @@
+{
+  "skill_name": "music-metadata-fixer",
+  "method": "subagent routing probe (one fresh subagent per query, asked which single skill it would load; NOT natural task execution)",
+  "date": "2026-09-19",
+  "queries": [
+    {"id": "P1", "should_trigger": true, "request": "帮我把这些 mp3 的标签改成和文件名一致的日文名", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P2", "should_trigger": true, "request": "这个文件夹里的歌元数据全是罗马音，帮我改回日文原名", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P3", "should_trigger": true, "request": "音乐文件名太乱了，帮我改成「两位音轨号 艺术家 - 曲名」的格式", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P4", "should_trigger": true, "request": "这些 flac 的专辑名和艺术家标签不统一，帮我统一一下", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P5", "should_trigger": true, "request": "歌词文件好多是别的歌的垃圾，帮我清掉垃圾、真的留着", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P6", "should_trigger": true, "request": "整理一下这个音乐库的标签，把标题的罗马音改回日文", "observed": "music-metadata-fixer", "correct": true, "note": "tricky: contains 整理音乐库 but intent is tags"},
+    {"id": "P7", "should_trigger": true, "request": "mp3 里有重复的日期标签和一些旧的 v1 标签，帮我清理", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P8", "should_trigger": true, "request": "帮我把歌曲标题里的拼音改成中文原名，歌手标签也统一", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P9", "should_trigger": true, "request": "rename these tracks to \"NN artist - title\" and keep the .lrc in sync", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P10", "should_trigger": true, "request": "fix the ID3 tags on this album, the titles are romanized", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P11", "should_trigger": true, "request": "文件名和标签对不上，帮我判断以哪边为准再统一", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P12", "should_trigger": true, "request": "有些 flac 文件开头挂了不该有的 ID3 块，帮我去掉", "observed": "music-metadata-fixer", "correct": true},
+    {"id": "P13", "should_trigger": true, "request": "整理一下音乐库，主要是把标签弄对", "observed": "music-metadata-fixer", "correct": true, "note": "tricky: 整理音乐库 + tag intent"},
+    {"id": "N1", "should_trigger": false, "request": "帮我整理一下音乐库，专辑太多了，把 Disc 1/Disc 2 合并成一张", "observed": "music-reorganizer", "correct": true},
+    {"id": "N2", "should_trigger": false, "request": "把这个音乐文件夹整理一下，把非音乐内容（drama、SFX）分出去", "observed": "music-reorganizer", "correct": true},
+    {"id": "N3", "should_trigger": false, "request": "音乐库里的单曲总显示成专辑，帮我加 RELEASETYPE 归到单曲", "observed": "music-reorganizer", "correct": true},
+    {"id": "N4", "should_trigger": false, "request": "帮我给这季动画的 mkv 生成 nfo，Jellyfin 里显示 Unknown Episode", "observed": "anime-nfo-generator", "correct": true},
+    {"id": "N5", "should_trigger": false, "request": "把这些 flac 转成 mp3", "observed": "none", "correct": true},
+    {"id": "N6", "should_trigger": false, "request": "帮我把这首歌的封面换成新图", "observed": "none", "correct": true},
+    {"id": "N7", "should_trigger": false, "request": "我的 Jellyfin 扫不到这个音乐文件夹，帮我看看服务器配置", "observed": "none", "correct": true},
+    {"id": "N8", "should_trigger": false, "request": "帮我从视频里提取音频存成 mp3", "observed": "none", "correct": true},
+    {"id": "N9", "should_trigger": false, "request": "整理一下音乐文件夹的目录结构，按专辑分好", "observed": "music-reorganizer", "correct": true}
+  ],
+  "score": {"correct": 22, "total": 22, "accuracy": 1.0}
+}

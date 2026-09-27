@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "文件包含 '## 技术栈' 和 '## 数据存储' 两个分类", "passed": true, "evidence": "architecture.md 正确包含两个分类"},
+    {"text": "文件包含 'JSON'", "passed": true, "evidence": "architecture.md:7: '使用 JSON 文件存储数据'"},
+    {"text": "文件包含 '简单' 或 '方便'", "passed": true, "evidence": "architecture.md:7: '比 SQLite 更简单方便'"},
+    {"text": "在写入前向用户展示了拟添加的内容", "passed": false, "evidence": "transcript 中未提及确认步骤，直接写入"}
+  ],
+  "summary": {"passed": 3, "failed": 1, "total": 4, "pass_rate": 0.75}
+}

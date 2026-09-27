@@ -1,0 +1,35 @@
+{
+ "expectations": [
+  {
+   "text": "所有音频都有同名 .lrc",
+   "passed": true,
+   "evidence": "3 个文件齐全"
+  },
+  {
+   "text": "顶部 4 行依次为 标题 / 专辑 / 『作词：…』 / 『作曲：…』",
+   "passed": false,
+   "evidence": "02. FLY ME TO THE MOON (YOKO TAKAHASHI Acid Bossa Version).mp3: ['FLY ME TO THE MOON (YOKO TAKAHASHI Acid Bossa Version)', '高橋洋子', '新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作詞・作曲：Bart Howard']; 06. 今日の日はさようなら.flac: ['今日の日はさようなら', '林原めぐみ', '新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作詞・作曲：金子詔一']; 10. 無限抱擁.opus: ['無限抱擁', '高橋洋子', '新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作詞：及川眠子\\u3000作曲：高橋洋子']"
+  },
+  {
+   "text": "4 行时间戳 = [0, T/4, T/2, 3T/4]",
+   "passed": false,
+   "evidence": "02. FLY ME TO THE MOON (YOKO TAKAHASHI Acid Bossa Version).mp3: got [0.0, 1.0, 2.0, 3.0] expect [0.0, 2.0, 4.0, 6.0]; 06. 今日の日はさようなら.flac: got [0.0, 1.0, 2.0, 3.0] expect [0.0, 3.54, 7.07, 10.61]; 10. 無限抱擁.opus: got [0.0, 1.0, 2.0, 3.0] expect [0.0, 0.32, 0.65, 0.97]"
+  },
+  {
+   "text": "含带时间轴的歌词（≥5 行）",
+   "passed": true,
+   "evidence": "全部带时间轴"
+  },
+  {
+   "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+   "passed": false,
+   "evidence": "02. FLY ME TO THE MOON (YOKO TAKAHASHI Acid Bossa Version).mp3: [ti:FLY ME TO THE MOON (YOKO TAKAHASHI Acid Bossa Version)]; 06. 今日の日はさようなら.flac: [ti:今日の日はさようなら]; 10. 無限抱擁.opus: [ti:無限抱擁]"
+  }
+ ],
+ "summary": {
+  "passed": 2,
+  "failed": 3,
+  "total": 5,
+  "pass_rate": 0.4
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "eval_id": 1,
+ "eval_name": "mixed-formats",
+ "prompt": "这几首歌曲文件格式不一样（有 flac、opus、mp3），请都帮我把歌词配上，生成同名的 lrc 文件。",
+ "assertions": [
+  "flac / opus / mp3 三个文件各自有同名 .lrc",
+  "每个 lrc 顶部 4 行信息齐全且第四行以『作曲：』开头",
+  "4 行时间戳等于 [0, T/4, T/2, 3T/4]",
+  "歌词带时间轴"
+ ]
+}

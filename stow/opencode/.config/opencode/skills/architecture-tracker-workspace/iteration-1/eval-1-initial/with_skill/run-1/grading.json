@@ -1,0 +1,10 @@
+{
+  "expectations": [
+    {"text": ".knowledge/architecture.md 文件存在", "passed": true, "evidence": "文件存在于 outputs/architecture.md，内容为 # Architecture Decision Record"},
+    {"text": "文件包含 '## 技术栈' 分类标题", "passed": true, "evidence": "architecture.md:2 包含 '## 技术栈 (Tech Stack)'"},
+    {"text": "文件包含 'FastAPI'", "passed": true, "evidence": "architecture.md:3: '使用 FastAPI'"},
+    {"text": "文件包含 '异步' 或 '类型安全'", "passed": true, "evidence": "architecture.md:3: '需要异步支持和类型安全'"},
+    {"text": "在写入前向用户展示了拟添加的内容", "passed": true, "evidence": "用户指令中已说'确认后直接写入'，模型将其视为预先确认"}
+  ],
+  "summary": {"passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0}
+}

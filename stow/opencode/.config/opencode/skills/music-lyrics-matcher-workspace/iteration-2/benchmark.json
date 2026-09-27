@@ -1,0 +1,416 @@
+{
+ "metadata": {
+  "skill_name": "music-lyrics-matcher",
+  "skill_path": "/home/shaymin/dotfiles/stow/opencode/.config/opencode/skills/music-lyrics-matcher",
+  "executor_model": "general-subagent",
+  "evals_run": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "runs_per_configuration": 1
+ },
+ "runs": [
+  {
+   "eval_id": 0,
+   "eval_name": "basic-mp3-album",
+   "configuration": "with_skill",
+   "run_number": 1,
+   "result": {
+    "pass_rate": 1.0,
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "time_seconds": 0,
+    "tokens": 0
+   },
+   "expectations": [
+    {
+     "text": "所有音频都有同名 .lrc",
+     "passed": true,
+     "evidence": "3 个齐全"
+    },
+    {
+     "text": "顶部信息行顺序正确",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "时间戳规则正确（有歌词 0..4T/5；纯音乐无时间戳）",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "歌词带时间轴且递增",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+     "passed": true,
+     "evidence": "无残留"
+    }
+   ]
+  },
+  {
+   "eval_id": 0,
+   "eval_name": "basic-mp3-album",
+   "configuration": "without_skill",
+   "run_number": 1,
+   "result": {
+    "pass_rate": 0.6,
+    "passed": 3,
+    "failed": 2,
+    "total": 5,
+    "time_seconds": 0,
+    "tokens": 0
+   },
+   "expectations": [
+    {
+     "text": "所有音频都有同名 .lrc",
+     "passed": true,
+     "evidence": "3 个齐全"
+    },
+    {
+     "text": "顶部信息行顺序正确",
+     "passed": false,
+     "evidence": "01. 残酷な天使のテーゼ.mp3: ['残酷な天使のテーゼ', '高橋洋子', 'アルバム：新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作詞：及川眠子\\u3000作曲：佐藤英敏', '残酷な天使のように']; 03. 魂のルフラン.mp3: ['魂のルフラン', '高橋洋子', 'アルバム：新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作詞：及川眠子\\u3000作曲：大森俊之', '私に還りなさい']; 09. 心よ原始に戻れ 2020.mp3: ['心よ原始に戻れ 2020', '高橋洋子', 'アルバム：新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作詞：及川眠子\\u3000作曲：佐藤英敏', '悲しい記憶が 化石に変わるよ もうすぐ']"
+    },
+    {
+     "text": "时间戳规则正确（有歌词 0..4T/5；纯音乐无时间戳）",
+     "passed": false,
+     "evidence": "01. 残酷な天使のテーゼ.mp3: got [0.0, 0.0, 0.0, 0.0, 0.11] expect [0.0, 1.39, 2.78, 4.16, 5.55]; 03. 魂のルフラン.mp3: got [0.0, 0.0, 0.0, 0.0, 1.46] expect [0.0, 1.69, 3.38, 5.08, 6.77]; 09. 心よ原始に戻れ 2020.mp3: got [0.0, 0.0, 0.0, 0.0, 59.74] expect [0.0, 13.6, 27.2, 40.79, 54.39]"
+    },
+    {
+     "text": "歌词带时间轴且递增",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+     "passed": true,
+     "evidence": "无残留"
+    }
+   ]
+  },
+  {
+   "eval_id": 1,
+   "eval_name": "mixed-formats",
+   "configuration": "with_skill",
+   "run_number": 1,
+   "result": {
+    "pass_rate": 1.0,
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "time_seconds": 0,
+    "tokens": 0
+   },
+   "expectations": [
+    {
+     "text": "所有音频都有同名 .lrc",
+     "passed": true,
+     "evidence": "3 个齐全"
+    },
+    {
+     "text": "顶部信息行顺序正确",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "时间戳规则正确（有歌词 0..4T/5；纯音乐无时间戳）",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "歌词带时间轴且递增",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+     "passed": true,
+     "evidence": "无残留"
+    }
+   ]
+  },
+  {
+   "eval_id": 1,
+   "eval_name": "mixed-formats",
+   "configuration": "without_skill",
+   "run_number": 1,
+   "result": {
+    "pass_rate": 0.2,
+    "passed": 1,
+    "failed": 4,
+    "total": 5,
+    "time_seconds": 0,
+    "tokens": 0
+   },
+   "expectations": [
+    {
+     "text": "所有音频都有同名 .lrc",
+     "passed": true,
+     "evidence": "3 个齐全"
+    },
+    {
+     "text": "顶部信息行顺序正确",
+     "passed": false,
+     "evidence": "02. FLY ME TO THE MOON (YOKO TAKAHASHI Acid Bossa Version).mp3: ['I love you', 'Fly me to the moon', 'And let me play among the stars', 'Let me see what spring is like on Jupiter and Mars', 'In other words, hold my hand']; 06. 今日の日はさようなら.flac: ['いつまでも 絶えることなく', '友だちで いよう', '明日の日を 夢みて', '希望の道を', '空を飛ぶ 鳥のように']"
+    },
+    {
+     "text": "时间戳规则正确（有歌词 0..4T/5；纯音乐无时间戳）",
+     "passed": false,
+     "evidence": "02. FLY ME TO THE MOON (YOKO TAKAHASHI Acid Bossa Version).mp3: got [8.34, 17.84, 20.34, 26.18, 33.64] expect [0.0, 8.42, 16.84, 25.27, 33.69]; 06. 今日の日はさようなら.flac: got [14.59, 21.69, 28.83, 35.51, 43.36] expect [0.0, 10.14, 20.28, 30.41, 40.55]"
+    },
+    {
+     "text": "歌词带时间轴且递增",
+     "passed": false,
+     "evidence": "10. 無限抱擁.opus: 时间轴行不足(0)"
+    },
+    {
+     "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+     "passed": false,
+     "evidence": "02. FLY ME TO THE MOON (YOKO TAKAHASHI Acid Bossa Version).mp3: [ti:FLY ME TO THE MOON (YOKO TAKAHASHI Acid Bossa Version)]; 06. 今日の日はさようなら.flac: [ti:今日の日はさようなら]; 10. 無限抱擁.opus: [ti:無限抱擁]"
+    }
+   ]
+  },
+  {
+   "eval_id": 2,
+   "eval_name": "clean-top-keep-translations",
+   "configuration": "with_skill",
+   "run_number": 1,
+   "result": {
+    "pass_rate": 1.0,
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "time_seconds": 0,
+    "tokens": 0
+   },
+   "expectations": [
+    {
+     "text": "所有音频都有同名 .lrc",
+     "passed": true,
+     "evidence": "2 个齐全"
+    },
+    {
+     "text": "顶部信息行顺序正确",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "时间戳规则正确（有歌词 0..4T/5；纯音乐无时间戳）",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "歌词带时间轴且递增",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+     "passed": true,
+     "evidence": "无残留"
+    },
+    {
+     "text": "原手动中文翻译行仍存在且未被替换",
+     "passed": true,
+     "evidence": "翻译完整保留"
+    }
+   ]
+  },
+  {
+   "eval_id": 2,
+   "eval_name": "clean-top-keep-translations",
+   "configuration": "without_skill",
+   "run_number": 1,
+   "result": {
+    "pass_rate": 0.6667,
+    "passed": 4,
+    "failed": 2,
+    "total": 6,
+    "time_seconds": 0,
+    "tokens": 0
+   },
+   "expectations": [
+    {
+     "text": "所有音频都有同名 .lrc",
+     "passed": true,
+     "evidence": "2 个齐全"
+    },
+    {
+     "text": "顶部信息行顺序正确",
+     "passed": false,
+     "evidence": "06. 今日の日はさようなら.mp3: ['标题: 今日の日はさようなら', '专辑: 新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作词: 金子詔一', '作曲: 金子詔一', '歌手: 林原めぐみ']; 07. 翼をください.mp3: ['标题: 翼をください', '专辑: 新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作词: 山上路夫', '作曲: 村井邦彦', '歌手: 林原めぐみ']"
+    },
+    {
+     "text": "时间戳规则正确（有歌词 0..4T/5；纯音乐无时间戳）",
+     "passed": false,
+     "evidence": "06. 今日の日はさようなら.mp3: got [0.0, 0.0, 0.0, 0.0, 0.0] expect [0.0, 2.92, 5.84, 8.75, 11.67]; 07. 翼をください.mp3: got [0.0, 0.0, 0.0, 0.0, 0.0] expect [0.0, 2.72, 5.45, 8.17, 10.9]"
+    },
+    {
+     "text": "歌词带时间轴且递增",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+     "passed": true,
+     "evidence": "无残留"
+    },
+    {
+     "text": "原手动中文翻译行仍存在且未被替换",
+     "passed": true,
+     "evidence": "翻译完整保留"
+    }
+   ]
+  },
+  {
+   "eval_id": 3,
+   "eval_name": "instrumental-and-normal",
+   "configuration": "with_skill",
+   "run_number": 1,
+   "result": {
+    "pass_rate": 1.0,
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "time_seconds": 0,
+    "tokens": 0
+   },
+   "expectations": [
+    {
+     "text": "所有音频都有同名 .lrc",
+     "passed": true,
+     "evidence": "2 个齐全"
+    },
+    {
+     "text": "顶部信息行顺序正确",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "时间戳规则正确（有歌词 0..4T/5；纯音乐无时间戳）",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "歌词带时间轴且递增",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+     "passed": true,
+     "evidence": "无残留"
+    },
+    {
+     "text": "纯音乐文件为 4 行信息 + 空行 + 纯音乐",
+     "passed": true,
+     "evidence": "结构正确"
+    }
+   ]
+  },
+  {
+   "eval_id": 3,
+   "eval_name": "instrumental-and-normal",
+   "configuration": "without_skill",
+   "run_number": 1,
+   "result": {
+    "pass_rate": 0.3333,
+    "passed": 2,
+    "failed": 4,
+    "total": 6,
+    "time_seconds": 0,
+    "tokens": 0
+   },
+   "expectations": [
+    {
+     "text": "所有音频都有同名 .lrc",
+     "passed": true,
+     "evidence": "2 个齐全"
+    },
+    {
+     "text": "顶部信息行顺序正确",
+     "passed": false,
+     "evidence": "01. 残酷な天使のテーゼ.mp3: ['残酷な天使のテーゼ', '专辑：新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作词：及川眠子', '作曲：佐藤英敏', '歌手：高橋洋子']; 99. 孤独の戦士 (Instrumental).mp3: ['', '', '', '孤独の戦士 (Instrumental)', '专辑：新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作曲：鷺巣詩郎', '歌手：鷺巣詩郎']"
+    },
+    {
+     "text": "时间戳规则正确（有歌词 0..4T/5；纯音乐无时间戳）",
+     "passed": false,
+     "evidence": "99. 孤独の戦士 (Instrumental).mp3: 纯音乐不应有时间戳"
+    },
+    {
+     "text": "歌词带时间轴且递增",
+     "passed": true,
+     "evidence": "全部正确"
+    },
+    {
+     "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+     "passed": false,
+     "evidence": "01. 残酷な天使のテーゼ.mp3: [ti:残酷な天使のテーゼ]; 99. 孤独の戦士 (Instrumental).mp3: [ti:孤独の戦士 (Instrumental)]"
+    },
+    {
+     "text": "纯音乐文件为 4 行信息 + 空行 + 纯音乐",
+     "passed": false,
+     "evidence": "99. 孤独の戦士 (Instrumental).mp3: 纯音乐前应有空行"
+    }
+   ]
+  }
+ ],
+ "run_summary": {
+  "with_skill": {
+   "pass_rate": {
+    "mean": 1.0,
+    "stddev": 0.0,
+    "min": 1.0,
+    "max": 1.0
+   },
+   "time_seconds": {
+    "mean": 0,
+    "stddev": 0,
+    "min": 0,
+    "max": 0
+   },
+   "tokens": {
+    "mean": 0,
+    "stddev": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "without_skill": {
+   "pass_rate": {
+    "mean": 0.44999999999999996,
+    "stddev": 0.0,
+    "min": 0.2,
+    "max": 0.6667
+   },
+   "time_seconds": {
+    "mean": 0,
+    "stddev": 0,
+    "min": 0,
+    "max": 0
+   },
+   "tokens": {
+    "mean": 0,
+    "stddev": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "delta": {
+   "pass_rate": "+0.55",
+   "time_seconds": "+0",
+   "tokens": "+0"
+  }
+ },
+ "notes": [
+  "基线通过明确禁用 skill 实现（本环境 skill 全局注册）。",
+  "with_skill 与 baseline 的差距主要在输出格式偏好：5 行信息 / T/5 间隔 / 纯音乐占位。",
+  "未捕获 token/时长数据，time/tokens 记为 0。"
+ ]
+}

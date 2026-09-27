@@ -1,0 +1,10 @@
+{
+  "expectations": [
+    {"text": ".knowledge/architecture.md 文件存在", "passed": false, "evidence": "创建了 .knowledge/adr-001-fastapi.md 而非 .knowledge/architecture.md"},
+    {"text": "文件包含 '## 技术栈' 分类标题", "passed": false, "evidence": "adr-001-fastapi.md 使用了 ADR 格式，无 技术栈 分类"},
+    {"text": "文件包含 'FastAPI'", "passed": false, "evidence": "文件路径和内容均包含 FastAPI，但文件名和格式不符合预期"},
+    {"text": "文件包含 '异步' 或 '类型安全'", "passed": false, "evidence": "内容提及 async，但不在指定的 architecture.md 中"},
+    {"text": "在写入前向用户展示了拟添加的内容", "passed": false, "evidence": "没有展示确认步骤"}
+  ],
+  "summary": {"passed": 0, "failed": 5, "total": 5, "pass_rate": 0.0}
+}

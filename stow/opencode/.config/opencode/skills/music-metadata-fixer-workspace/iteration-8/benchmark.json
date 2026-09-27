@@ -1,0 +1,419 @@
+{
+  "metadata": {
+    "skill_name": "music-metadata-fixer",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-09-19T07:38:32Z",
+    "evals_run": [
+      0,
+      4,
+      9
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "titles equal filename Japanese names",
+          "passed": true,
+          "evidence": "{1: '古代の神々', 2: '母と子', 3: '明日', 4: 'アケ村'}"
+        },
+        {
+          "text": "TPE1=TPE2=坂本昌之",
+          "passed": true,
+          "evidence": "{1: ('坂本昌之', '坂本昌之'), 2: ('坂本昌之', '坂本昌之'), 3: ('坂本昌之', '坂本昌之'), 4: ('坂本昌之', '坂本昌之')}"
+        },
+        {
+          "text": "TALB album, TCON Soundtrack",
+          "passed": true,
+          "evidence": "{1: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), 2: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), 3: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), 4: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack')}"
+        },
+        {
+          "text": "TYER is 2009",
+          "passed": true,
+          "evidence": "{1: '2009', 2: '2009', 3: '2009', 4: '2009'}"
+        },
+        {
+          "text": "no ID3v1",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': False, '02 坂本昌之 - 母と子.mp3': False, '03 坂本昌之 - 明日.mp3': False, '04 坂本昌之 - アケ村.mp3': False}"
+        },
+        {
+          "text": "one date frame (1 TYER, 0 TDRC)",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': (1, 0), '02 坂本昌之 - 母と子.mp3': (1, 0), '03 坂本昌之 - 明日.mp3': (1, 0), '04 坂本昌之 - アケ村.mp3': (1, 0)}"
+        },
+        {
+          "text": "APIC preserved",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True, '04 坂本昌之 - アケ村.mp3': True}"
+        },
+        {
+          "text": "audio decodes",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True, '04 坂本昌之 - アケ村.mp3': True}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "All 4 FLAC titles equal the Japanese names from the filenames",
+          "passed": true,
+          "evidence": "titles: {'1': '古代の神々', '2': '母と子', '3': '明日', '4': 'アケ村'}"
+        },
+        {
+          "text": "artist and albumartist are 坂本昌之 on every file",
+          "passed": true,
+          "evidence": "(artist,albumartist): {'1': ('坂本昌之', '坂本昌之'), '2': ('坂本昌之', '坂本昌之'), '3': ('坂本昌之', '坂本昌之'), '4': ('坂本昌之', '坂本昌之')}"
+        },
+        {
+          "text": "album is the album name and genre is Soundtrack on every file",
+          "passed": true,
+          "evidence": "(album,genre): {'1': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), '2': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), '3': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), '4': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack')}"
+        },
+        {
+          "text": "date is 2009 on every file",
+          "passed": true,
+          "evidence": "date: {'1': '2009', '2': '2009', '3': '2009', '4': '2009'}"
+        },
+        {
+          "text": "No FLAC starts with an ID3 block (all start with fLaC)",
+          "passed": true,
+          "evidence": "magic: {'01 坂本昌之 - 古代の神々.flac': b'fLaC', '02 坂本昌之 - 母と子.flac': b'fLaC', '03 坂本昌之 - 明日.flac': b'fLaC', '04 坂本昌之 - アケ村.flac': b'fLaC'}"
+        },
+        {
+          "text": "Cover picture preserved on every file",
+          "passed": true,
+          "evidence": "pictures: {'01 坂本昌之 - 古代の神々.flac': 1, '02 坂本昌之 - 母と子.flac': 1, '03 坂本昌之 - 明日.flac': 1, '04 坂本昌之 - アケ村.flac': 1}"
+        },
+        {
+          "text": "Audio still decodes as FLAC",
+          "passed": true,
+          "evidence": "codec: {'01 坂本昌之 - 古代の神々.flac': 'flac', '02 坂本昌之 - 母と子.flac': 'flac', '03 坂本昌之 - 明日.flac': 'flac', '04 坂本昌之 - アケ村.flac': 'flac'}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Album A: TIT2 == native name from filename",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々': True, '02 坂本昌之 - 母と子': True, '03 坂本昌之 - アケ村': True}"
+        },
+        {
+          "text": "Album A: no romanized title left",
+          "passed": true,
+          "evidence": "{}"
+        },
+        {
+          "text": "Album A: junk .lrc deleted, real .lrc kept",
+          "passed": true,
+          "evidence": "junk_gone=True real_kept=True"
+        },
+        {
+          "text": "Album B: renamed from tags to 0N 坂本昌之 - <title>",
+          "passed": true,
+          "evidence": "['01 坂本昌之 - 明日.mp3', '02 坂本昌之 - アケ村.mp3']"
+        },
+        {
+          "text": "Album B: no old romanized filenames",
+          "passed": true,
+          "evidence": "[]"
+        },
+        {
+          "text": "Album C: Disc 1/Disc 2 preserved, not flattened",
+          "passed": true,
+          "evidence": "discs=True files=True flattened=[]"
+        },
+        {
+          "text": "scans/cover.jpg untouched",
+          "passed": true,
+          "evidence": "True"
+        },
+        {
+          "text": "Album A keeps TALB 'Album A', Album B keeps 'Album B'",
+          "passed": true,
+          "evidence": "A={'Album A'} B={'Album B'}"
+        },
+        {
+          "text": "7 audio files present and decodable",
+          "passed": true,
+          "evidence": "n=7"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "titles equal filename Japanese names",
+          "passed": true,
+          "evidence": "{1: '古代の神々', 2: '母と子', 3: '明日', 4: 'アケ村'}"
+        },
+        {
+          "text": "TPE1=TPE2=坂本昌之",
+          "passed": true,
+          "evidence": "{1: ('坂本昌之', '坂本昌之'), 2: ('坂本昌之', '坂本昌之'), 3: ('坂本昌之', '坂本昌之'), 4: ('坂本昌之', '坂本昌之')}"
+        },
+        {
+          "text": "TALB album, TCON Soundtrack",
+          "passed": true,
+          "evidence": "{1: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), 2: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), 3: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), 4: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack')}"
+        },
+        {
+          "text": "TYER is 2009",
+          "passed": true,
+          "evidence": "{1: '2009', 2: '2009', 3: '2009', 4: '2009'}"
+        },
+        {
+          "text": "no ID3v1",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': False, '02 坂本昌之 - 母と子.mp3': False, '03 坂本昌之 - 明日.mp3': False, '04 坂本昌之 - アケ村.mp3': False}"
+        },
+        {
+          "text": "one date frame (1 TYER, 0 TDRC)",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': (1, 0), '02 坂本昌之 - 母と子.mp3': (1, 0), '03 坂本昌之 - 明日.mp3': (1, 0), '04 坂本昌之 - アケ村.mp3': (1, 0)}"
+        },
+        {
+          "text": "APIC preserved",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True, '04 坂本昌之 - アケ村.mp3': True}"
+        },
+        {
+          "text": "audio decodes",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True, '04 坂本昌之 - アケ村.mp3': True}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "All 4 FLAC titles equal the Japanese names from the filenames",
+          "passed": true,
+          "evidence": "titles: {'1': '古代の神々', '2': '母と子', '3': '明日', '4': 'アケ村'}"
+        },
+        {
+          "text": "artist and albumartist are 坂本昌之 on every file",
+          "passed": true,
+          "evidence": "(artist,albumartist): {'1': ('坂本昌之', '坂本昌之'), '2': ('坂本昌之', '坂本昌之'), '3': ('坂本昌之', '坂本昌之'), '4': ('坂本昌之', '坂本昌之')}"
+        },
+        {
+          "text": "album is the album name and genre is Soundtrack on every file",
+          "passed": true,
+          "evidence": "(album,genre): {'1': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), '2': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), '3': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), '4': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack')}"
+        },
+        {
+          "text": "date is 2009 on every file",
+          "passed": true,
+          "evidence": "date: {'1': '2009', '2': '2009', '3': '2009', '4': '2009'}"
+        },
+        {
+          "text": "No FLAC starts with an ID3 block (all start with fLaC)",
+          "passed": true,
+          "evidence": "magic: {'01 坂本昌之 - 古代の神々.flac': b'fLaC', '02 坂本昌之 - 母と子.flac': b'fLaC', '03 坂本昌之 - 明日.flac': b'fLaC', '04 坂本昌之 - アケ村.flac': b'fLaC'}"
+        },
+        {
+          "text": "Cover picture preserved on every file",
+          "passed": true,
+          "evidence": "pictures: {'01 坂本昌之 - 古代の神々.flac': 1, '02 坂本昌之 - 母と子.flac': 1, '03 坂本昌之 - 明日.flac': 1, '04 坂本昌之 - アケ村.flac': 1}"
+        },
+        {
+          "text": "Audio still decodes as FLAC",
+          "passed": true,
+          "evidence": "codec: {'01 坂本昌之 - 古代の神々.flac': 'flac', '02 坂本昌之 - 母と子.flac': 'flac', '03 坂本昌之 - 明日.flac': 'flac', '04 坂本昌之 - アケ村.flac': 'flac'}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Album A: TIT2 == native name from filename",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々': True, '02 坂本昌之 - 母と子': True, '03 坂本昌之 - アケ村': True}"
+        },
+        {
+          "text": "Album A: no romanized title left",
+          "passed": true,
+          "evidence": "{}"
+        },
+        {
+          "text": "Album A: junk .lrc deleted, real .lrc kept",
+          "passed": true,
+          "evidence": "junk_gone=True real_kept=True"
+        },
+        {
+          "text": "Album B: renamed from tags to 0N 坂本昌之 - <title>",
+          "passed": true,
+          "evidence": "['01 坂本昌之 - 明日.mp3', '02 坂本昌之 - アケ村.mp3']"
+        },
+        {
+          "text": "Album B: no old romanized filenames",
+          "passed": true,
+          "evidence": "[]"
+        },
+        {
+          "text": "Album C: Disc 1/Disc 2 preserved, not flattened",
+          "passed": true,
+          "evidence": "discs=True files=True flattened=[]"
+        },
+        {
+          "text": "scans/cover.jpg untouched",
+          "passed": true,
+          "evidence": "True"
+        },
+        {
+          "text": "Album A keeps TALB 'Album A', Album B keeps 'Album B'",
+          "passed": true,
+          "evidence": "A={'Album A'} B={'Album B'}"
+        },
+        {
+          "text": "7 audio files present and decodable",
+          "passed": true,
+          "evidence": "n=7"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+0.0",
+      "tokens": "+0"
+    }
+  },
+  "notes": [
+    "No assertion discriminates in this iteration: eval-0 8/8, eval-4 7/7, eval-9 9/9 in BOTH configurations (delta +0.00). For this model the judgement work is already within capability.",
+    "eval-9 (nested folders): the real increment is tooling, not behaviour. Both configs handled the folders correctly; scan_tree/--recursive/the cross-folder gate are verified deterministically by tools/test_nested_tools.py (13/13), which is the appropriate measure here.",
+    "eval-0 / eval-4 are regression guards for the shared-code rewrite (content sniffing in read_info/write_fields): no regression — every assertion still passes with the skill, and the without_skill runs also pass.",
+    "without_skill independently diagnosed the romanized/Chinese tags, removed ID3v1 + duplicate dates, and preserved cover + ID3 version in eval-0; it also removed the stray leading ID3 on the FLACs in eval-4. The earlier claim that the baseline fails FLAC stray-ID3 detection did NOT reproduce — the baseline is capable, so the skill's value is reliability, not capability.",
+    "Timing/tokens are 0 and must not be read as a real delta: this harness's subagent tool does not report duration_ms/total_tokens, so timing.json could not be captured."
+  ]
+}

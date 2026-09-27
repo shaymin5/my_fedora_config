@@ -1,0 +1,15 @@
+{
+  "eval_id": 0,
+  "eval_name": "romaji-to-japanese-and-legacy-cleanup",
+  "prompt": "这个文件夹是我下载的动画OST。文件名是正确的日语原名，但里面的标签全是罗马音，而且有些字段是中文的。请把标签改成和文件名一致的日语，其他罗马音/非日语字段也统一。权威信息：专辑名『獣の奏者 エリン オリジナル・サウンドトラック』，艺术家和专辑艺术家都是『坂本昌之』，年份 2009，流派 Soundtrack。另外标签里有些历史遗留问题（旧的 v1 标签、重复的日期），也一起清理干净。封面和音频不要破坏。",
+  "assertions": [
+    "titles equal filename Japanese names",
+    "TPE1=TPE2=坂本昌之",
+    "TALB album, TCON Soundtrack",
+    "TYER is 2009",
+    "no ID3v1",
+    "one date frame (1 TYER, 0 TDRC)",
+    "APIC preserved",
+    "audio decodes"
+  ]
+}

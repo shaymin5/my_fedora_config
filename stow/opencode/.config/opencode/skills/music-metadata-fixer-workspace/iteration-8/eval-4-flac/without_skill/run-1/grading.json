@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "All 4 FLAC titles equal the Japanese names from the filenames",
+      "passed": true,
+      "evidence": "titles: {'1': '古代の神々', '2': '母と子', '3': '明日', '4': 'アケ村'}"
+    },
+    {
+      "text": "artist and albumartist are 坂本昌之 on every file",
+      "passed": true,
+      "evidence": "(artist,albumartist): {'1': ('坂本昌之', '坂本昌之'), '2': ('坂本昌之', '坂本昌之'), '3': ('坂本昌之', '坂本昌之'), '4': ('坂本昌之', '坂本昌之')}"
+    },
+    {
+      "text": "album is the album name and genre is Soundtrack on every file",
+      "passed": true,
+      "evidence": "(album,genre): {'1': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), '2': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), '3': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), '4': ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack')}"
+    },
+    {
+      "text": "date is 2009 on every file",
+      "passed": true,
+      "evidence": "date: {'1': '2009', '2': '2009', '3': '2009', '4': '2009'}"
+    },
+    {
+      "text": "No FLAC starts with an ID3 block (all start with fLaC)",
+      "passed": true,
+      "evidence": "magic: {'01 坂本昌之 - 古代の神々.flac': b'fLaC', '02 坂本昌之 - 母と子.flac': b'fLaC', '03 坂本昌之 - 明日.flac': b'fLaC', '04 坂本昌之 - アケ村.flac': b'fLaC'}"
+    },
+    {
+      "text": "Cover picture preserved on every file",
+      "passed": true,
+      "evidence": "pictures: {'01 坂本昌之 - 古代の神々.flac': 1, '02 坂本昌之 - 母と子.flac': 1, '03 坂本昌之 - 明日.flac': 1, '04 坂本昌之 - アケ村.flac': 1}"
+    },
+    {
+      "text": "Audio still decodes as FLAC",
+      "passed": true,
+      "evidence": "codec: {'01 坂本昌之 - 古代の神々.flac': 'flac', '02 坂本昌之 - 母と子.flac': 'flac', '03 坂本昌之 - 明日.flac': 'flac', '04 坂本昌之 - アケ村.flac': 'flac'}"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  }
+}

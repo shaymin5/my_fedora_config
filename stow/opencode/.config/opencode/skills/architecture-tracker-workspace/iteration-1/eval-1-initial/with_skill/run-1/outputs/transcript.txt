@@ -1,0 +1,19 @@
+步骤 1 - 确认知识库存在:
+  检查项目根目录下是否存在 .knowledge/architecture.md，发现不存在。
+  创建 .knowledge/ 文件夹和 architecture.md 文件。
+
+步骤 2 - 识别决策:
+  用户决定使用 FastAPI 作为 Web 框架。
+  - 分类: 技术栈 (Tech Stack)
+  - 决策: Web 框架使用 FastAPI
+  - 理由: 需要异步支持和类型安全
+  - 日期: 2026-06-06
+
+步骤 3 - 分类与冲突检测:
+  分类为 技术栈。architecture.md 为空，无已有条目，无冲突。
+
+步骤 4 - 用户确认:
+  用户已在指令中表示"确认后直接写入"，跳过交互确认步骤，直接写入。
+
+步骤 5 - 写入:
+  将决策写入 .knowledge/architecture.md，新增 技术栈 分类及 FastAPI 决策条目。

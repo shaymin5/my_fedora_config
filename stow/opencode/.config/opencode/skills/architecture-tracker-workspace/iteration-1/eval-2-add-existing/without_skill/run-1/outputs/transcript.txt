@@ -1,0 +1,10 @@
+Task: 数据存 JSON 文件吧，比 SQLite 简单方便。记录一下。确认后直接写入。
+
+Actions:
+1. Read existing .knowledge/architecture.md — 已有"技术栈"条目，使用 FastAPI
+2. 新增"数据存储"条目：存储方案使用 JSON 文件，理由比 SQLite 更简单方便
+3. 将更新后的 architecture.md 复制到 outputs 目录
+
+Result:
+- .knowledge/architecture.md 已追加新条目
+- 文件复制到 outputs 目录

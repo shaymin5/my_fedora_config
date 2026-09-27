@@ -1,0 +1,50 @@
+{
+  "expectations": [
+    {
+      "text": "titles equal filename Japanese names",
+      "passed": true,
+      "evidence": "{1: '古代の神々', 2: '母と子', 3: '明日', 4: 'アケ村'}"
+    },
+    {
+      "text": "TPE1=TPE2=坂本昌之",
+      "passed": true,
+      "evidence": "{1: ('坂本昌之', '坂本昌之'), 2: ('坂本昌之', '坂本昌之'), 3: ('坂本昌之', '坂本昌之'), 4: ('坂本昌之', '坂本昌之')}"
+    },
+    {
+      "text": "TALB album, TCON Soundtrack",
+      "passed": true,
+      "evidence": "{1: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), 2: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), 3: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack'), 4: ('獣の奏者 エリン オリジナル・サウンドトラック', 'Soundtrack')}"
+    },
+    {
+      "text": "TYER is 2009",
+      "passed": true,
+      "evidence": "{1: '2009', 2: '2009', 3: '2009', 4: '2009'}"
+    },
+    {
+      "text": "no ID3v1",
+      "passed": true,
+      "evidence": "{'01 坂本昌之 - 古代の神々.mp3': False, '02 坂本昌之 - 母と子.mp3': False, '03 坂本昌之 - 明日.mp3': False, '04 坂本昌之 - アケ村.mp3': False}"
+    },
+    {
+      "text": "one date frame (1 TYER, 0 TDRC)",
+      "passed": true,
+      "evidence": "{'01 坂本昌之 - 古代の神々.mp3': (1, 0), '02 坂本昌之 - 母と子.mp3': (1, 0), '03 坂本昌之 - 明日.mp3': (1, 0), '04 坂本昌之 - アケ村.mp3': (1, 0)}"
+    },
+    {
+      "text": "APIC preserved",
+      "passed": true,
+      "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True, '04 坂本昌之 - アケ村.mp3': True}"
+    },
+    {
+      "text": "audio decodes",
+      "passed": true,
+      "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True, '04 坂本昌之 - アケ村.mp3': True}"
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  }
+}

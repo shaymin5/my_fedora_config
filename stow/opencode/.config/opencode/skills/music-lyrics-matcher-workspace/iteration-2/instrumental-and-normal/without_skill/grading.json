@@ -1,0 +1,40 @@
+{
+ "expectations": [
+  {
+   "text": "所有音频都有同名 .lrc",
+   "passed": true,
+   "evidence": "2 个齐全"
+  },
+  {
+   "text": "顶部信息行顺序正确",
+   "passed": false,
+   "evidence": "01. 残酷な天使のテーゼ.mp3: ['残酷な天使のテーゼ', '专辑：新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作词：及川眠子', '作曲：佐藤英敏', '歌手：高橋洋子']; 99. 孤独の戦士 (Instrumental).mp3: ['', '', '', '孤独の戦士 (Instrumental)', '专辑：新世紀エヴァンゲリオン｜EVANGELION FINALLY', '作曲：鷺巣詩郎', '歌手：鷺巣詩郎']"
+  },
+  {
+   "text": "时间戳规则正确（有歌词 0..4T/5；纯音乐无时间戳）",
+   "passed": false,
+   "evidence": "99. 孤独の戦士 (Instrumental).mp3: 纯音乐不应有时间戳"
+  },
+  {
+   "text": "歌词带时间轴且递增",
+   "passed": true,
+   "evidence": "全部正确"
+  },
+  {
+   "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+   "passed": false,
+   "evidence": "01. 残酷な天使のテーゼ.mp3: [ti:残酷な天使のテーゼ]; 99. 孤独の戦士 (Instrumental).mp3: [ti:孤独の戦士 (Instrumental)]"
+  },
+  {
+   "text": "纯音乐文件为 4 行信息 + 空行 + 纯音乐",
+   "passed": false,
+   "evidence": "99. 孤独の戦士 (Instrumental).mp3: 纯音乐前应有空行"
+  }
+ ],
+ "summary": {
+  "passed": 2,
+  "failed": 4,
+  "total": 6,
+  "pass_rate": 0.3333
+ }
+}

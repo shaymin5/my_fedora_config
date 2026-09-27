@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "skill_name": "music-metadata-fixer",
+    "skill_path": "/home/shaymin/.config/opencode/skills/music-metadata-fixer",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-09-19T06:30:06Z",
+    "evals_run": [
+      5,
+      6
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 5,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Japanese titles preserved in TIT2 (tags not overwritten)",
+          "passed": true,
+          "evidence": "titles by track: {1: '古代の神々', 2: '母と子', 3: '明日'}"
+        },
+        {
+          "text": "TPE1 remains 坂本昌之",
+          "passed": true,
+          "evidence": "TPE1: {1: '坂本昌之', 2: '坂本昌之', 3: '坂本昌之'}"
+        },
+        {
+          "text": "Filenames are the tag-derived pattern",
+          "passed": true,
+          "evidence": "['01 坂本昌之 - 古代の神々.mp3', '02 坂本昌之 - 母と子.mp3', '03 坂本昌之 - 明日.mp3']"
+        },
+        {
+          "text": "No old filenames remain",
+          "passed": true,
+          "evidence": "[]"
+        },
+        {
+          "text": "Audio still decodes",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "TIT2 unchanged for all 3 files (no guessed title written)",
+          "passed": true,
+          "evidence": "titles: {'1': '夜明け', '2': '静けさ', '3': 'ひかり'}"
+        },
+        {
+          "text": "Filenames unchanged (no rename on a guess)",
+          "passed": true,
+          "evidence": "names: ['01 坂本昌之 - 暁.mp3', '02 坂本昌之 - 静寂.mp3', '03 坂本昌之 - 光.mp3']"
+        },
+        {
+          "text": "All 3 mp3 exist and audio decodes",
+          "passed": true,
+          "evidence": "decodes: {p.name: ff(p) for p in files}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Japanese titles preserved in TIT2 (tags not overwritten)",
+          "passed": true,
+          "evidence": "titles by track: {1: '古代の神々', 2: '母と子', 3: '明日'}"
+        },
+        {
+          "text": "TPE1 remains 坂本昌之",
+          "passed": true,
+          "evidence": "TPE1: {1: '坂本昌之', 2: '坂本昌之', 3: '坂本昌之'}"
+        },
+        {
+          "text": "Filenames are the tag-derived pattern",
+          "passed": true,
+          "evidence": "['01 坂本昌之 - 古代の神々.mp3', '02 坂本昌之 - 母と子.mp3', '03 坂本昌之 - 明日.mp3']"
+        },
+        {
+          "text": "No old filenames remain",
+          "passed": true,
+          "evidence": "[]"
+        },
+        {
+          "text": "Audio still decodes",
+          "passed": true,
+          "evidence": "{'01 坂本昌之 - 古代の神々.mp3': True, '02 坂本昌之 - 母と子.mp3': True, '03 坂本昌之 - 明日.mp3': True}"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "TIT2 unchanged for all 3 files (no guessed title written)",
+          "passed": true,
+          "evidence": "titles: {'1': '夜明け', '2': '静けさ', '3': 'ひかり'}"
+        },
+        {
+          "text": "Filenames unchanged (no rename on a guess)",
+          "passed": true,
+          "evidence": "names: ['01 坂本昌之 - 暁.mp3', '02 坂本昌之 - 静寂.mp3', '03 坂本昌之 - 光.mp3']"
+        },
+        {
+          "text": "All 3 mp3 exist and audio decodes",
+          "passed": true,
+          "evidence": "decodes: {p.name: ff(p) for p in files}"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+0.0",
+      "tokens": "+0"
+    }
+  },
+  "notes": [
+    "Flexibility checks both reached 100% in BOTH configs: with this model the 'which side is right' judgement is already reliable, so these two evals are regression guards, not discriminators.",
+    "eval-5 (tags authoritative, filenames romanized): both configs verified the tags against the official BVCL-19 listing and renamed FROM tags, leaving tags intact. No config fell for 'trust the filename'.",
+    "eval-6 (ambiguous, must not guess): both configs correctly abstained and reported the ambiguity instead of guessing a title.",
+    "Note for graders: in eval-5 the with_skill narrative table mislabelled a mapping (said Ashita -> 01 古代の神々) while the actual on-disk result was correct. Always grade the artifacts, not the prose.",
+    "Across the whole eval family, the skill's objective edge stays on FLAC stray-ID3 removal (eval-4) and ID3 version hygiene (eval-0).",
+    "Timing/tokens unavailable in this harness; those columns are 0."
+  ]
+}

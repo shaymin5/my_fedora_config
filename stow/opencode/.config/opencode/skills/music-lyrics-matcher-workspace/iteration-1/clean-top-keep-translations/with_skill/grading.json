@@ -1,0 +1,40 @@
+{
+ "expectations": [
+  {
+   "text": "所有音频都有同名 .lrc",
+   "passed": true,
+   "evidence": "2 个文件齐全"
+  },
+  {
+   "text": "顶部 4 行依次为 标题 / 专辑 / 『作词：…』 / 『作曲：…』",
+   "passed": true,
+   "evidence": "全部正确"
+  },
+  {
+   "text": "4 行时间戳 = [0, T/4, T/2, 3T/4]",
+   "passed": true,
+   "evidence": "全部正确"
+  },
+  {
+   "text": "含带时间轴的歌词（≥5 行）",
+   "passed": true,
+   "evidence": "全部带时间轴"
+  },
+  {
+   "text": "顶部无 [ti:]/[al:]/[ly:] 等 ID 头部标签",
+   "passed": true,
+   "evidence": "无残留标签"
+  },
+  {
+   "text": "原手动中文翻译行仍存在且未被替换",
+   "passed": true,
+   "evidence": "翻译完整保留"
+  }
+ ],
+ "summary": {
+  "passed": 6,
+  "failed": 0,
+  "total": 6,
+  "pass_rate": 1.0
+ }
+}
