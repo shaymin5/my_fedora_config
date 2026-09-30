@@ -23,3 +23,6 @@ bash $HOME/dotfiles/packages/flatpak.sh
 
 # System
 bash $HOME/dotfiles/script/system.sh
+
+# Other installing
+bash $HOME/dotfiles/packages/other.sh

@@ -1,0 +1,20 @@
+
+# Rime custom settings
+# encoding: utf-8
+
+# 要比共享目录的同名文件的 config_version 大才可以生效
+config_version: '2026-10-06'
+
+# 方案列表
+patch:
+  schema_list:
+    # 可以直接删除或注释不需要的方案，对应的 *.schema.yaml 方案文件也可以直接删除
+    # 除了 t9，它依赖于 rime_ice，用九宫格别删 rime_ice.schema.yaml
+    - schema: double_pinyin_flypy    # 小鹤双拼
+    - schema: rime_ice               # 雾凇拼音（全拼）
+    - schema: t9                     # 中文九键（仓输入法 & 元书输入法）
+
+
+  menu/page_size: 9 # 候选词个数
+
+
