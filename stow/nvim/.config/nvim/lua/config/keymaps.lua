@@ -55,7 +55,7 @@ vim.keymap.set("v", "<leader>r", function()
     local text = vim.fn.getreg('"')
     text = vim.fn.escape(text, [[\/.*$^~[]])
     vim.fn.feedkeys(":%s/" .. text .. "/", "n")
-end, { desc = "Substitute visual selection" })
+end, { desc = "Replace substitute visual selection" })
 
 -- 前进后退
 vim.keymap.set("n", "<C-,>", "<C-o>") -- back
