@@ -18,19 +18,23 @@ sudo dnf install keyd -y
 # sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 # niri 桌面配套装备
-sudo dnf install niri fuzzel alacritty swaybg maple-fonts -y
+sudo dnf install niri fuzzel kitty swaybg maple-fonts -y
+
+# stow
+sudo dnf install stow -y
 
 # 输入法
 sudo dnf install fcitx5 fcitx5-autostart fcitx5-configtool fcitx5-rime fcitx5-chinese-addons -y
 
 # chrome
-sudo dnf install chrome -y
+sudo dnf install google-chrome-stable -y
 
 # steam
 sudo dnf install steam -y
 
 # noctalia
-sudo dnf install noctalia-shell -y
+# sudo dnf install noctalia-shell -y
+sudo dnf install noctalia -y
 
 # jellyfin
 sudo dnf install jellyfin -y

@@ -7,7 +7,7 @@ set -euo pipefail
 DOTFILES="$HOME/dotfiles/stow"
 
 if [ "$#" -eq 0 ]; then
-    echo "Usage: buildstow <app1> [app2] ..."
+    echo "Usage: build-stow <app1> [app2] ..."
     exit 1
 fi
 

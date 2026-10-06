@@ -4,20 +4,21 @@
 
 packages=(
     # alacritty
+    apps
     autostart
     bash
-    build-stow
     fcitx5
-    git
+    # git
     kitty
-    lx-music-desktop
-    mihomo-party
+    # lx-music-desktop
+    # mihomo-party
     mise
     niri
     noctalia
     nvim
     opencode
     starship
+    system_script
     yazi
 )
 

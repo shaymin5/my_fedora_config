@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-sudo -v
 set -e
+sudo -v
 
 # ssh auto generate
 bash $HOME/dotfiles/script/ssh.sh
@@ -12,11 +12,11 @@ bash $HOME/dotfiles/script/github.sh
 # 换源
 bash $HOME/dotfiles/script/network.sh
 
-# stow
-bash $HOME/dotfiles/script/stow.sh
-
 # DNF
 bash $HOME/dotfiles/packages/dnf.sh
+
+# stow
+bash $HOME/dotfiles/script/stow.sh
 
 # Flatpak
 bash $HOME/dotfiles/packages/flatpak.sh
