@@ -1,6 +1,9 @@
 """Test core logic of anime-nfo-generator skill."""
 import re, sys, os
 
+SCRIPTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "scripts")
+sys.path.insert(0, SCRIPTS)
+
 # Test 1: Parse Japanese Wikipedia wikitext
 def test_wikitext_parsing():
     """Verify we can extract episode titles from Japanese Wikipedia raw text."""
@@ -85,9 +88,42 @@ def test_season_numbering():
         assert season == expected_season, f"EP{ep_num} OVA={is_ova}: expected S{expected_season}, got S{season}"
     print("PASS: Season numbering")
 
+# Test 5: container-agnostic scanning/validation (regression)
+# Previously the pipeline assumed MKV, so an MP4 library made validate.py
+# report every NFO as an orphan and every video as missing an NFO.
+def test_video_container_support():
+    """Verify MP4/M4V/MKV are all recognized and paired correctly."""
+    import tempfile
+    import validate, generate_nfo, scan_media
+
+    for mod in (validate, scan_media):
+        assert ".mp4" in mod.VIDEO_EXTS, f"{mod.__name__} missing .mp4"
+        assert ".m4v" in mod.VIDEO_EXTS, f"{mod.__name__} missing .m4v"
+        assert ".mkv" in mod.VIDEO_EXTS, f"{mod.__name__} missing .mkv"
+
+    names = ("Show - 01 [720p].mp4", "Show - 02 [720p].m4v", "Show - 03 [720p].mkv")
+    with tempfile.TemporaryDirectory() as d:
+        for i, name in enumerate(names, 1):
+            open(os.path.join(d, name), "w").close()
+            # `basename` alias exercises the container-neutral spec key.
+            generate_nfo.write_episode_nfo(d, {
+                "basename": os.path.splitext(name)[0],
+                "title": f"ep{i}", "season": 1, "episode": i, "aired": "2012-04-22",
+            })
+
+        errors = validate.check_media_nfo_pairing(d)
+        assert errors == [], f"false-positive pairing errors for non-MKV: {errors}"
+
+        # A genuinely orphaned MP4 must still be reported.
+        open(os.path.join(d, "Show - 04 [720p].mp4"), "w").close()
+        errors = validate.check_media_nfo_pairing(d)
+        assert any("Show - 04" in e for e in errors), f"orphan not detected: {errors}"
+
+    print("PASS: video container support (MP4/M4V/MKV)")
+
 if __name__ == '__main__':
     results = []
-    for name in ['test_wikitext_parsing', 'test_nfo_xml_generation', 'test_filename_matching', 'test_season_numbering']:
+    for name in ['test_wikitext_parsing', 'test_nfo_xml_generation', 'test_filename_matching', 'test_season_numbering', 'test_video_container_support']:
         try:
             globals()[name]()
             results.append((name, True))

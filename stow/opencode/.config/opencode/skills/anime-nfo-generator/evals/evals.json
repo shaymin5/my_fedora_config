@@ -18,6 +18,12 @@
       "prompt": "帮我检查 /tmp/test-anime-mixed 目录下的 MKV 文件，看看哪些缺少 NFO 元数据，然后帮缺失的生成。这个目录里有 TV 正片和 OVA 混在一起。",
       "expected_output": "只对缺少 NFO 的 MKV 文件生成，TV 标记 S01，OVA 标记 S00",
       "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "我的动画都是 MP4 格式，目录 /tmp/test-anime-mp4 下有 3 集《冰菓》(Hyouka, 2012)，文件名类似 [Group] Hyouka - 01 [720p].mp4。帮我生成带中文标题的 NFO，生成后顺便校验一下。",
+      "expected_output": "识别 MP4 容器，生成 tvshow.nfo + 3 个 episode NFO，校验时不会把 MP4 的 NFO 误报为孤儿文件",
+      "files": []
     }
   ]
 }

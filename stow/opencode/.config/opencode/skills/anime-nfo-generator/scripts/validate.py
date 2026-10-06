@@ -5,41 +5,61 @@ Usage:
     uv run python scripts/validate.py <directory> [--tv-episodes N] [--ova-episodes N]
 
 Checks performed:
-  1. MKV-NFO pairing: every MKV has a matching NFO (and vice versa)
+  1. Video-NFO pairing: every video file has a matching NFO (and vice versa)
   2. Episode count: matches expected TV/OVA totals
   3. NFO format: valid XML, required fields present
   4. Title encoding: no mojibake/garbled characters
   5. Season numbering: TV=1, OVA=0 consistency
   6. Airdate format: YYYY-MM-DD validity
   7. Duplicate episodes: no two NFOs share same season+episode
-  8. Orphaned files: subtitle/other files without matching MKV
+  8. Orphaned files: subtitle/other files without matching video
 """
 
 import json, sys, os, glob as globmod, argparse, xml.etree.ElementTree as ET
 
+# Containers anime releases commonly use. The pairing check must know about
+# all of them, not just MKV, otherwise an MP4 library reports every NFO as an
+# orphan (and every video as missing an NFO) even when everything is correct.
+VIDEO_EXTS = {
+    ".mkv", ".mp4", ".m4v", ".avi", ".mov", ".webm",
+    ".ts", ".m2ts", ".flv", ".wmv", ".mpg", ".mpeg",
+    ".rmvb", ".rm", ".ogv", ".3gp",
+}
 
-def check_mkv_nfo_pairing(directory: str) -> list[str]:
-    """Every MKV has a matching NFO, and every NFO maps to an MKV."""
+
+def iter_video_files(directory: str):
+    """Yield paths (relative to `directory`) of all recognized video files."""
+    for root, _dirs, files in os.walk(directory):
+        for fn in files:
+            if os.path.splitext(fn)[1].lower() in VIDEO_EXTS:
+                yield os.path.relpath(os.path.join(root, fn), directory)
+
+
+def check_media_nfo_pairing(directory: str) -> list[str]:
+    """Every video file (any supported container) has a matching NFO, and
+    every episode NFO maps back to a video file."""
     errors = []
-    mkvs = set()
+    videos = {os.path.splitext(p)[0] for p in iter_video_files(directory)}
     nfos = set()
-    for f in globmod.glob(os.path.join(directory, "**", "*.mkv"), recursive=True):
-        mkvs.add(os.path.splitext(os.path.relpath(f, directory))[0])
     for f in globmod.glob(os.path.join(directory, "**", "*.nfo"), recursive=True):
         rel = os.path.relpath(f, directory)
         if rel == "tvshow.nfo":
             continue
         nfos.add(os.path.splitext(rel)[0])
 
-    orphan_mkv = mkvs - nfos
-    orphan_nfo = nfos - mkvs
+    orphan_video = videos - nfos
+    orphan_nfo = nfos - videos
 
-    for m in sorted(orphan_mkv):
-        errors.append(f"Missing NFO for MKV: {m}.mkv")
+    for v in sorted(orphan_video):
+        errors.append(f"Missing NFO for video: {v}")
     for n in sorted(orphan_nfo):
-        errors.append(f"Orphan NFO without MKV: {n}.nfo")
+        errors.append(f"Orphan NFO without video: {n}.nfo")
 
     return errors
+
+
+# Backwards-compatible alias for the old name.
+check_mkv_nfo_pairing = check_media_nfo_pairing
 
 
 def check_nfo_format(directory: str) -> list[str]:
@@ -121,6 +141,9 @@ def check_season_numbering(directory: str) -> list[str]:
         ep_elem = root.find("episode")
         if season_elem is None or ep_elem is None:
             continue
+        if season_elem.text is None or ep_elem.text is None:
+            errors.append(f"{rel}: missing season/episode value")
+            continue
         try:
             season = int(season_elem.text)
             episode = int(ep_elem.text)
@@ -134,10 +157,19 @@ def check_season_numbering(directory: str) -> list[str]:
             errors.append(f"{rel}: duplicate S{season:02d}E{episode:02d}")
         seen_episodes.add(key)
 
-        # Heuristic: if file is under OVA directory, season should be 0
-        if "OVA" in rel.upper() or "ova" in rel.lower():
-            if season != 0:
-                errors.append(f"{rel}: OVA directory but season={season} (expected 0)")
+        # Heuristic: specials live in Season 0. Detect both OVA named files
+        # and any Season 00 / Specials folder, and require season=0 there.
+        rel_lower = rel.lower()
+        parent_dirs = [p.lower() for p in os.path.normpath(rel).split(os.sep)[:-1]]
+        in_specials = (
+            "ova" in rel_lower
+            or any(p in ("season 00", "season 0", "specials", "special") for p in parent_dirs)
+        )
+        if in_specials and season != 0:
+            errors.append(
+                f"{rel}: specials location but season={season} (expected 0; "
+                f"use displayseason/displayepisode to place it in a season)"
+            )
 
     return errors
 
@@ -189,7 +221,7 @@ def check_file_count(directory: str, expected_tv: int | None, expected_ova: int 
         except ET.ParseError:
             continue
         season_elem = root.find("season")
-        if season_elem is not None:
+        if season_elem is not None and season_elem.text is not None:
             try:
                 s = int(season_elem.text)
             except (ValueError, TypeError):
@@ -217,7 +249,7 @@ def main():
 
     all_errors = []
     checks = [
-        ("MKV-NFO pairing", check_mkv_nfo_pairing(args.directory)),
+        ("Video-NFO pairing", check_media_nfo_pairing(args.directory)),
         ("NFO XML format", check_nfo_format(args.directory)),
         ("Title encoding", check_title_encoding(args.directory)),
         ("Season numbering", check_season_numbering(args.directory)),

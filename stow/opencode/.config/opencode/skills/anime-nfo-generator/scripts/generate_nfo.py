@@ -28,9 +28,12 @@ Spec JSON format:
 
 Creates:
   - <directory>/tvshow.nfo
-  - <directory>/<mkv_basename>.nfo for each episode
+  - <directory>/<basename>.nfo for each episode
+  (the episode key may be `mkv_basename`, `media_basename` or `basename`;
+   it is the source video filename without its extension)
 """
 import json, sys, os
+from typing import Any
 
 
 def esc(s: str) -> str:
@@ -38,7 +41,7 @@ def esc(s: str) -> str:
             .replace('"', "&quot;").replace("'", "&apos;")
 
 
-def write_tvshow_nfo(directory: str, tvshow: dict):
+def write_tvshow_nfo(directory: str, tvshow: dict[str, Any]):
     genres = "\n".join(f"  <genre>{esc(g)}</genre>" for g in tvshow.get("genres", []))
     content = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <tvshow>
@@ -58,18 +61,43 @@ def write_tvshow_nfo(directory: str, tvshow: dict):
     return path
 
 
-def write_episode_nfo(directory: str, ep: dict):
-    basename = ep["mkv_basename"]
-    content = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<episodedetails>
-  <title>{esc(ep.get("title", ""))}</title>
-  <showtitle>{esc(ep.get("showtitle", ""))}</showtitle>
-  <season>{ep.get("season", 1)}</season>
-  <episode>{ep.get("episode", 0)}</episode>
-  <aired>{ep.get("aired", "")}</aired>
-  <plot>{esc(ep.get("plot", ""))}</plot>
-</episodedetails>
-"""
+def write_episode_nfo(directory: str, ep: dict[str, Any]):
+    # Accept a few key names so the spec is understandable whether the source
+    # files are MKV, MP4 or anything else. `mkv_basename` is the historical
+    # name and still the canonical one.
+    basename = (
+        ep.get("mkv_basename") or ep.get("media_basename")
+        or ep.get("video_basename") or ep.get("basename")
+    )
+    if not basename:
+        raise ValueError(f"episode entry has no basename: {ep!r}")
+
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>',
+        "<episodedetails>",
+        f'  <title>{esc(ep.get("title", ""))}</title>',
+        f'  <showtitle>{esc(ep.get("showtitle", ""))}</showtitle>',
+        f'  <season>{ep.get("season", 1)}</season>',
+        f'  <episode>{ep.get("episode", 0)}</episode>',
+    ]
+    # Optional placement tags for specials/OVAs (Season 0). These let a
+    # special show up inside a normal season, e.g. an episode 11.5 that
+    # should display between S01E11 and S01E12. Recognized by both Jellyfin
+    # and Kodi; Jellyfin reads displayseason/displayepisode as "aired before
+    # season/episode N".
+    for tag in (
+        "displayseason", "displayepisode",
+        "airsbefore_season", "airsbefore_episode", "airsafter_season",
+    ):
+        val = ep.get(tag)
+        if val is not None and val != "":
+            lines.append(f"  <{tag}>{val}</{tag}>")
+    lines += [
+        f'  <aired>{ep.get("aired", "")}</aired>',
+        f'  <plot>{esc(ep.get("plot", ""))}</plot>',
+        "</episodedetails>",
+    ]
+    content = "\n".join(lines) + "\n"
     path = os.path.join(directory, basename + ".nfo")
     parent = os.path.dirname(path)
     if parent:
