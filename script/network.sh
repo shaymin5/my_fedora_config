@@ -5,25 +5,25 @@ set -e
 # DNF 换源
 # ------------------------------------------------------------
 
-# 备份 Fedora 官方仓库配置
-sudo cp /etc/yum.repos.d/fedora.repo \
+# 备份 Fedora 官方仓库配置（-n：已存在则不覆盖，避免重跑时弄丢原始备份）
+sudo cp -n /etc/yum.repos.d/fedora.repo \
     /etc/yum.repos.d/fedora.repo.bak
 
-sudo cp /etc/yum.repos.d/fedora-updates.repo \
+sudo cp -n /etc/yum.repos.d/fedora-updates.repo \
     /etc/yum.repos.d/fedora-updates.repo.bak
 
 # 禁用 metalink，启用清华镜像的 baseurl
 #
 # 保留 repo 文件原本的 $releasever / $basearch 等变量，
-# 只修改镜像站域名。
+# 只修改第一个（启用的）仓库段的 baseurl。
 sudo sed -i \
     -e 's|^metalink=|#metalink=|' \
-    -e 's|^#baseurl=.*|baseurl=https://mirrors.tuna.tsinghua.edu.cn/fedora/linux/$releasever/Everything/$basearch/os/|' \
+    -e '0,/^#baseurl=/{s|^#baseurl=.*|baseurl=https://mirrors.tuna.tsinghua.edu.cn/fedora/releases/$releasever/Everything/$basearch/os/|}' \
     /etc/yum.repos.d/fedora.repo
 
 sudo sed -i \
     -e 's|^metalink=|#metalink=|' \
-    -e 's|^#baseurl=.*|baseurl=https://mirrors.tuna.tsinghua.edu.cn/fedora/linux/updates/$releasever/Everything/$basearch/|' \
+    -e '0,/^#baseurl=/{s|^#baseurl=.*|baseurl=https://mirrors.tuna.tsinghua.edu.cn/fedora/updates/$releasever/Everything/$basearch/|}' \
     /etc/yum.repos.d/fedora-updates.repo
 
 # 清理 DNF 缓存并重新生成缓存

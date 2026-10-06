@@ -8,19 +8,13 @@
 // https://niri-wm.github.io/niri/Configuration:-Input
 prefer-no-csd
 environment {
-    http_proxy "http://127.0.0.1:7890"
-    https_proxy "http://127.0.0.1:7890"
-    HTTP_PROXY "http://127.0.0.1:7890"
-    HTTPS_PROXY "http://127.0.0.1:7890"
-
-    // all_proxy "socks5://127.0.0.1:7890"
-    // ALL_PROXY "socks5://127.0.0.1:7890"
-
-    NO_PROXY "localhost,127.0.0.1,::1,.local,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12"
-    no_proxy "localhost,127.0.0.1,::1,.local,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12"
-
+    // 机器相关（代理等）见仓库外的 ~/.config/niri-local.kdl
     XMODIFIERS "@im=fcitx"
 }
+
+// 可选 include：文件不存在只 warning，不影响启动
+include optional=true "~/.config/niri-local.kdl"
+
 input {
     keyboard {
       repeat-rate 35

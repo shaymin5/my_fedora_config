@@ -3,15 +3,11 @@
 # home的配置
 
 packages=(
-    # alacritty
     apps
     autostart
     bash
     fcitx5
-    # git
     kitty
-    # lx-music-desktop
-    # mihomo-party
     mise
     niri
     noctalia

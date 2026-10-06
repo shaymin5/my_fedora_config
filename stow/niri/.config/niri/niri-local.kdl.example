@@ -1,0 +1,29 @@
+// 机器相关配置模板（示例）
+//
+// 用法：换机后复制本文件为 ~/.config/niri-local.kdl 并按需修改。
+// config.kdl 里通过 include optional=true 加载它；文件不存在只会 warning。
+//
+//   cp ~/.config/niri/niri-local.kdl.example ~/.config/niri-local.kdl
+
+environment {
+    http_proxy "http://127.0.0.1:7890"
+    https_proxy "http://127.0.0.1:7890"
+    HTTP_PROXY "http://127.0.0.1:7890"
+    HTTPS_PROXY "http://127.0.0.1:7890"
+
+    // all_proxy "socks5://127.0.0.1:7890"
+    // ALL_PROXY "socks5://127.0.0.1:7890"
+
+    NO_PROXY "localhost,127.0.0.1,::1,.local,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12"
+    no_proxy "localhost,127.0.0.1,::1,.local,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12"
+}
+
+// 其它机器相关项也可放这里，例如开机自启 / 显示器：
+//
+// spawn-at-startup "google-chrome-stable" "https://www.bilibili.com/"
+//
+// output "DP-1" {
+//     mode "2560x1440@179.998"
+//     scale 1.5
+//     position x=1280 y=0
+// }
