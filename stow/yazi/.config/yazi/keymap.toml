@@ -1,0 +1,8 @@
+# `p` is conflict-aware paste: it always pastes into the current directory,
+# and only prompts when the destination already has the same name.
+# `P` stays Yazi's built-in `paste --force` (silent overwrite); `y` / `x`
+# keep their default copy / cut behavior.
+[[mgr.prepend_keymap]]
+on   = "p"
+run  = "plugin merge-paste -- cwd"
+desc = "Paste (ask on conflict: overwrite/merge/skip/rename)"
