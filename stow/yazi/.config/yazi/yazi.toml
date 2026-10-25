@@ -12,9 +12,19 @@ max_height = 10000
 # image_quality = 900
 
 [plugin]
-prepend_previewers = [{ mime = "image/*", run = "image" }]
+prepend_previewers = [
+  # Large ZIPs (>7 MiB) are misdetected by file/libmagic 5.46 as
+  # application/octet-stream, so match the extension as a fallback.
+  { url = "*.{zip,zipx,cbz}", run = "archive" },
+  { mime = "image/*", run = "image" },
+]
 
 [open]
+# Same libmagic limitation: without this, Enter hits the generic
+# application/octet-stream rule below instead of extracting.
+prepend_rules = [
+  { url = "*.{zip,zipx,cbz}", use = "extract" },
+]
 rules = [
   # Excel (must come BEFORE the generic "text/*" rule below:
   # yazi picks the first matching rule, so text/* would otherwise swallow text/csv)
