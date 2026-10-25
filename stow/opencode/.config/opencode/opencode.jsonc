@@ -1,13 +1,19 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "deepseek/deepseek-flash",
+  "variants": "max",
   // "plugin": ["@mohak34/opencode-notifier"],
   "autoupdate": false,
   "permission": {
     "bash": {
+      "*": "allow",
+      "python": "deny",
       "python *": "deny",
+      "python3": "deny",
       "python3 *": "deny",
+      "pip": "deny",
       "pip *": "deny",
+      "pip3": "deny",
       "pip3 *": "deny",
       "rm -rf /": "deny",
     },
@@ -22,4 +28,5 @@
       "*.env.*": "deny",
     },
   },
+  "plugins": ["superpowers@git+https://github.com/obra/superpowers.git"],
 }
