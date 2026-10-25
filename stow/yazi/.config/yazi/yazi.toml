@@ -1,10 +1,10 @@
 [mgr]
-show_hidden = true
+show_hidden = false
 sort_by = "natural"
 sort_sensitive = false
 sort_reverse = false
 sort_dir_first = true
-linemode = "none"
+linemode = "size"
 
 [preview]
 max_width = 10000
@@ -24,9 +24,7 @@ prepend_previewers = [
 [open]
 # Same libmagic limitation: without this, Enter hits the generic
 # application/octet-stream rule below instead of extracting.
-prepend_rules = [
-  { url = "*.{zip,zipx,cbz}", use = "extract" },
-]
+prepend_rules = [{ url = "*.{zip,zipx,cbz}", use = "extract" }]
 rules = [
   # Excel (must come BEFORE the generic "text/*" rule below:
   # yazi picks the first matching rule, so text/* would otherwise swallow text/csv)
