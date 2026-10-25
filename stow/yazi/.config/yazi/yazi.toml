@@ -1,4 +1,4 @@
-[manager]
+[mgr]
 show_hidden = true
 sort_by = "natural"
 sort_sensitive = false
@@ -13,6 +13,8 @@ max_height = 10000
 
 [plugin]
 prepend_previewers = [
+  # Directory preview: `T` toggles between one level and a tree.
+  { url = "*/", run = "folder-tree" },
   # Large ZIPs (>7 MiB) are misdetected by file/libmagic 5.46 as
   # application/octet-stream, so match the extension as a fallback.
   { url = "*.{zip,zipx,cbz}", run = "archive" },

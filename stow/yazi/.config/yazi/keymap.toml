@@ -6,3 +6,8 @@
 on   = "p"
 run  = "plugin merge-paste -- cwd"
 desc = "Paste (ask on conflict: overwrite/merge/skip/rename)"
+
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "plugin folder-tree"
+desc = "Toggle directory preview: tree / one level"
