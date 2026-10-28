@@ -22,16 +22,38 @@ prepend_previewers = [
 ]
 
 [open]
-# Same libmagic limitation: without this, Enter hits the generic
-# application/octet-stream rule below instead of extracting.
-prepend_rules = [{ url = "*.{zip,zipx,cbz}", use = "extract" }]
+prepend_rules = [
+  # Same libmagic limitation: without this, Enter hits the generic
+  # application/octet-stream rule below instead of extracting.
+  { url = "*.{zip,zipx,cbz}", use = "extract" },
+  # Empty spreadsheet files likewise fall back to LibreOffice Calc
+  # (this also catches plain-text CSVs that file reports as text/plain).
+  { url = "*.{xls,xlsx,xlsm,xlsb,xlt,xltx,xltm,ods,ots,csv}", use = "excel" },
+  # Empty files (e.g. `touch new.docx`) are detected as `inode/x-empty`
+  # by file/libmagic, so match document extensions as a fallback.
+  { url = "*.{doc,docx,docm,dotx,dotm,odt,ott,rtf,fodt}", use = "doc" },
+]
 rules = [
   # Excel (must come BEFORE the generic "text/*" rule below:
   # yazi picks the first matching rule, so text/* would otherwise swallow text/csv)
-  { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", use = "excel" },
-  { mime = "application/vnd.ms-excel", use = "excel" },
+  # NOTE: Yazi's mime.local plugin strips the `vnd.` prefix from MIME types,
+  # so these patterns use the normalized forms (e.g. application/vnd.ms-excel
+  # is seen as application/ms-excel).
+  { mime = "application/openxmlformats-officedocument.spreadsheetml.sheet", use = "excel" },
+  { mime = "application/ms-excel", use = "excel" },
   { mime = "application/oasis.opendocument.spreadsheet", use = "excel" },
   { mime = "text/csv", use = "excel" },
+
+  # Word/ODF documents (must come BEFORE the generic "text/*" rule below:
+  # RTF is often detected as text/rtf and would otherwise open in Neovim)
+  { mime = "application/msword", use = "doc" },
+  { mime = "application/openxmlformats-officedocument.wordprocessingml.{document,template}", use = "doc" },
+  { mime = "application/ms-word.{document,template}.macroenabled.12", use = "doc" },
+  { mime = "application/oasis.opendocument.text", use = "doc" },
+  { mime = "application/oasis.opendocument.text-template", use = "doc" },
+  { mime = "application/oasis.opendocument.text-flat-xml", use = "doc" },
+  { mime = "application/rtf", use = "doc" },
+  { mime = "text/rtf", use = "doc" },
 
   { mime = "text/*", use = "edit" },
   { mime = "application/json", use = "edit" },
@@ -60,5 +82,7 @@ audio = [
 pdf = [{ run = 'evince %s', desc = "PDF Viewer", orphan = true }]
 
 excel = [{ run = 'libreoffice %s', desc = "LibreOffice Calc", orphan = true }]
+
+doc = [{ run = 'libreoffice %s', desc = "LibreOffice Writer", orphan = true }]
 
 open = [{ run = 'xdg-open %s', desc = "System Default", orphan = true }]
