@@ -82,3 +82,5 @@ gf() {
         printf "%s" "$file" | wl-copy &&
         echo "$file"
 }
+
+alias dsh='npx @deepseek-ai/dsh web'

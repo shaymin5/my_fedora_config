@@ -15,6 +15,6 @@ patch:
     - schema: t9                     # 中文九键（仓输入法 & 元书输入法）
 
 
-  menu/page_size: 9 # 候选词个数
+  menu/page_size: 7 # 候选词个数
 
 
